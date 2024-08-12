@@ -4,47 +4,56 @@ using UnityEngine;
 
 public class Vibration : MonoBehaviour
 {
-    public static AndroidJavaClass unityPlayer;
-    public static AndroidJavaObject currentActivity;
-    public static AndroidJavaObject vibrator;
+    private AndroidJavaObject vibrator;
 
-    void Awake()
+    //longueur de vibration
+    private long milliseconds = 500;
+
+    private long[] pattern = { 0, 200, 100, 300 };
+    private int repetition = -1;
+
+    void Start()
     {
-        if (isAndroid())
+        if (Application.platform == RuntimePlatform.Android)
         {
-            // Obtenir la classe Vibrator à partir du contexte Android
-            unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+            AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
             vibrator = currentActivity.Call<AndroidJavaObject>("getSystemService", "vibrator");
         }
     }
 
-    public void Cancel()
-    {
-        if (isAndroid() && vibrator != null)
-            vibrator.Call("cancel");
-    }
-
-    public bool isAndroid()
-    {
-#if UNITY_ANDROID && !UNITY_EDITOR
-        return true;
-#else
-        return false;
-#endif
-    }
-
+    //Simple vibration de base en fonction de l'appareil
     public void MakeVibration()
     {
-        if (isAndroid() && vibrator != null)
+        if (Application.platform == RuntimePlatform.Android)
         {
-            Debug.Log("Android");
-            vibrator.Call("vibrate", 500);
+            vibrator.Call("vibrate", milliseconds);
         }
         else
         {
-            Debug.Log("pas un android");
             Handheld.Vibrate();
+        }
+    }
+
+    //Création d'un pattern de vibration et le nombre de fois quelle se répète
+    public void MakePatternVibration()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            vibrator.Call("vibrate", pattern, repetition);
+        }
+        else
+        {
+            Handheld.Vibrate();
+        }
+    }
+
+    //Annulation de la vibration
+    public void CancelVibration()
+    {
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            vibrator.Call("cancel");
         }
     }
 }
