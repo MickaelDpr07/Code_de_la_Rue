@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-527a6442-cb0c-4250-acdf-b4fdbfa8b2fe" data-name="Calque_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 19.84 48.41">
+  <defs>
+    <style>
+      .uuid-104f6ab2-f307-4c27-8a9f-9cf03daf5ff3 {
+        fill: none;
+      }
+
+      .uuid-8306e97f-2d20-45db-b3d4-f7359c554113 {
+        fill: #ebeef8;
+      }
+
+      .uuid-d0a35170-56d4-4d53-bc10-95035f7d2319 {
+        fill: url(#uuid-e6bd08e2-a7e3-4d9d-8721-71b0cea06a51);
+      }
+
+      .uuid-58f62144-a95c-45df-ab03-90ce8b32c78d {
+        clip-path: url(#uuid-eb2c3263-689b-4bf9-a9be-dc5219ad0e9f);
+      }
+
+      .uuid-bb47eed9-579e-46d0-bd5b-a9f015a8167d {
+        fill: #e53b11;
+      }
+
+      .uuid-52870b35-bfe7-4d5e-ba54-f9d0ae6b9ee9 {
+        clip-path: url(#uuid-5c115962-4ffd-4d3d-a3e1-c561469c17f2);
+      }
+    </style>
+    <clipPath id="uuid-eb2c3263-689b-4bf9-a9be-dc5219ad0e9f">
+      <path class="uuid-104f6ab2-f307-4c27-8a9f-9cf03daf5ff3" d="M13.74,24.5s.07-.06.11-.08c.11-.24.21-.49.3-.73l-.41.82Z"/>
+    </clipPath>
+    <linearGradient id="uuid-e6bd08e2-a7e3-4d9d-8721-71b0cea06a51" data-name="Dégradé sans nom 4" x1="-1198.47" y1="653.39" x2="-1197.47" y2="653.39" gradientTransform="translate(-28834.48 52906.67) rotate(90) scale(44.16 -44.16)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b9cfed"/>
+      <stop offset=".02" stop-color="#b9cfed"/>
+      <stop offset=".49" stop-color="#96bee6"/>
+      <stop offset=".75" stop-color="#8096cb"/>
+      <stop offset="1" stop-color="#696caf"/>
+    </linearGradient>
+    <clipPath id="uuid-5c115962-4ffd-4d3d-a3e1-c561469c17f2">
+      <path class="uuid-104f6ab2-f307-4c27-8a9f-9cf03daf5ff3" d="M13.74,24.5s.07-.06.11-.08c.11-.24.21-.49.3-.73l-.41.82Z"/>
+    </clipPath>
+  </defs>
+  <g id="uuid-8154ab87-1c06-463a-bb05-60104a83ea01" data-name="Décors">
+    <g id="uuid-a8b6c31b-e8f4-4e58-b95f-14440a936db2" data-name="Decor_x5F_PlanteRouge">
+      <g class="uuid-58f62144-a95c-45df-ab03-90ce8b32c78d">
+        <rect class="uuid-d0a35170-56d4-4d53-bc10-95035f7d2319" x="13.68" y="23.66" width=".52" height=".86" transform="translate(-3.15 2.12) rotate(-7.81)"/>
+      </g>
+      <g class="uuid-52870b35-bfe7-4d5e-ba54-f9d0ae6b9ee9">
+        <rect class="uuid-d0a35170-56d4-4d53-bc10-95035f7d2319" x="13.68" y="23.66" width=".52" height=".86" transform="translate(-3.15 2.12) rotate(-7.81)"/>
+      </g>
+      <path class="uuid-bb47eed9-579e-46d0-bd5b-a9f015a8167d" d="M18.95,9.22c-.89-2.91-2.07-5.07-3.61-6.63C13.39.63,10.74-.32,8.41.1c-1.43.26-2.84,1-4.44,2.34C2.22,3.89.13,6.22,0,9.08c-.03.82.1,1.64.22,2.43.04.28.09.57.13.85.21,1.57.2,3.19.19,4.76,0,.78,0,1.58.01,2.37.05,1.88.28,4.65,1.65,6.9,1.07,1.75,3.15,3.39,5.5,3.34.16,0,.32-.01.48-.03,3.05-.37,4.86-3.37,5.7-5.23,1.8-1.43,3.82-3.05,4.93-5.25,1.31-2.6,1.35-5.96.12-9.99M13.84,24.42s-.07.06-.11.09l.41-.82c-.09.24-.2.49-.3.73"/>
+      <rect class="uuid-8306e97f-2d20-45db-b3d4-f7359c554113" x="-11.48" y="27.78" width="40.71" height=".57" transform="translate(-19.51 35.85) rotate(-87.8)"/>
+      <path class="uuid-8306e97f-2d20-45db-b3d4-f7359c554113" d="M9.12,14.26c-1.56-1.87-3.18-3.72-4.84-5.5l.42-.39c1.66,1.79,3.29,3.65,4.86,5.53l-.44.37Z"/>
+      <path class="uuid-8306e97f-2d20-45db-b3d4-f7359c554113" d="M8.7,22.08c-.49-.37-.9-.66-1.31-.95-1.07-.75-2.08-1.46-4.21-3.5l.4-.41c2.1,2.01,3.1,2.71,4.15,3.45.41.29.83.58,1.32.96l-.35.45Z"/>
+      <path class="uuid-8306e97f-2d20-45db-b3d4-f7359c554113" d="M9.09,25.96l-.44-.37c.91-1.08,2.05-1.97,3.14-2.83,1.46-1.15,2.84-2.23,3.76-3.73l.49.3c-.97,1.6-2.46,2.76-3.89,3.89-1.07.84-2.18,1.71-3.06,2.75"/>
+      <path class="uuid-8306e97f-2d20-45db-b3d4-f7359c554113" d="M9.55,18.45l-.46-.33c.46-.63,1.44-1.81,2.59-3.17,1.68-2,3.77-4.49,4.85-6.08l.47.32c-1.1,1.61-3.2,4.12-4.89,6.13-1.14,1.36-2.12,2.53-2.56,3.14"/>
+      <rect class="uuid-8306e97f-2d20-45db-b3d4-f7359c554113" x="10.99" y="9.81" width="5.82" height=".57" transform="translate(1.72 22.21) rotate(-80.85)"/>
+      <rect class="uuid-8306e97f-2d20-45db-b3d4-f7359c554113" x="4.51" y="17.94" width="3.17" height=".57" transform="translate(-12.87 21.34) rotate(-80.85)"/>
+      <rect class="uuid-8306e97f-2d20-45db-b3d4-f7359c554113" x="10.13" y="20.59" width="5.42" height=".57" transform="translate(-11.33 24.93) rotate(-67.92)"/>
+    </g>
+  </g>
+</svg>

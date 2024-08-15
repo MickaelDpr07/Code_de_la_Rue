@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-09425657-13ba-4cb5-a187-f8833badc230" data-name="Calque_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.11 75.35">
+  <defs>
+    <style>
+      .uuid-6a66be02-2c62-45bd-9ac7-50806f74aff7 {
+        fill: #fff;
+      }
+
+      .uuid-bc0e1930-4c2f-49ed-9823-e26fcba27576 {
+        fill: #4e4a49;
+      }
+
+      .uuid-99d1de02-acef-427f-8c40-e4ccc9cbbf16 {
+        fill: #3d3937;
+      }
+
+      .uuid-159b56b9-cbb9-40e5-b7d9-5ff898eccb56 {
+        fill: #54504e;
+      }
+    </style>
+  </defs>
+  <g id="uuid-39f194a5-f702-47c0-954e-6c0463ab995b" data-name="Décors">
+    <g id="uuid-8f51a517-9570-4481-80de-7a61ba423d41" data-name="Decor_x5F_Lampadaire">
+      <rect class="uuid-99d1de02-acef-427f-8c40-e4ccc9cbbf16" x="10.91" y="70.79" width="11.2" height="1.58"/>
+      <path class="uuid-99d1de02-acef-427f-8c40-e4ccc9cbbf16" d="M16.51,69.39c3.09,0,5.6,1.33,5.6,2.98s-2.51,2.98-5.6,2.98-5.6-1.33-5.6-2.98,2.51-2.98,5.6-2.98"/>
+      <path class="uuid-159b56b9-cbb9-40e5-b7d9-5ff898eccb56" d="M16.51,67.81c3.09,0,5.6,1.33,5.6,2.98s-2.51,2.98-5.6,2.98-5.6-1.33-5.6-2.98,2.51-2.98,5.6-2.98"/>
+      <path class="uuid-99d1de02-acef-427f-8c40-e4ccc9cbbf16" d="M16.27,69.43c.84,0,1.52.36,1.52.81s-.68.81-1.52.81-1.52-.36-1.52-.81.68-.81,1.52-.81"/>
+      <path class="uuid-6a66be02-2c62-45bd-9ac7-50806f74aff7" d="M13.93,9.57s-1.45,1.81-2.79,1.04S2.33,4.89.97,3.87C-.4,2.84.97.82.97.82l12.97,8.74Z"/>
+      <rect class="uuid-99d1de02-acef-427f-8c40-e4ccc9cbbf16" x="14.75" y="69.39" width="3.04" height=".84"/>
+      <path class="uuid-6a66be02-2c62-45bd-9ac7-50806f74aff7" d="M16.27,68.58c.84,0,1.52.36,1.52.81s-.68.81-1.52.81-1.52-.36-1.52-.81.68-.81,1.52-.81"/>
+      <rect class="uuid-bc0e1930-4c2f-49ed-9823-e26fcba27576" x="15.38" y="10.29" width="1.79" height="58.88"/>
+      <path class="uuid-bc0e1930-4c2f-49ed-9823-e26fcba27576" d="M16.28,68.7c.5,0,.9.22.9.48s-.4.48-.9.48-.91-.22-.91-.48.41-.48.91-.48"/>
+      <path class="uuid-bc0e1930-4c2f-49ed-9823-e26fcba27576" d="M2.9.37l14.26,9.92-1.4,1.24L0,.88C.66-.05,1.96-.28,2.9.37"/>
+    </g>
+  </g>
+</svg>
