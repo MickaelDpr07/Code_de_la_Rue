@@ -8,6 +8,8 @@ public class MenuPrincipal : MonoBehaviour
 
     [SerializeField] private GameObject panelBoutton;
     [SerializeField] private GameObject panelParametres;
+    [SerializeField] private GameObject panelLexique;
+    [SerializeField] private GameObject panelSelection;
 
     private void Start()
     {
@@ -43,5 +45,11 @@ public class MenuPrincipal : MonoBehaviour
         panelParametres.SetActive(false);
 
         // Mettre en place la sauvegarde et l'application des paramètres
+    }
+
+    public void OpenLexique()
+    {
+        panelBoutton.SetActive(false);
+        panelLexique.SetActive(true);
     }
 }
