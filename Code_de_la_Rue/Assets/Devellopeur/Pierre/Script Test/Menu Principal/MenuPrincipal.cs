@@ -52,4 +52,10 @@ public class MenuPrincipal : MonoBehaviour
         panelBoutton.SetActive(false);
         panelLexique.SetActive(true);
     }
+
+    public void OpenSelection()
+    {
+        panelBoutton.SetActive(false);
+        panelSelection.SetActive(true);
+    }
 }
