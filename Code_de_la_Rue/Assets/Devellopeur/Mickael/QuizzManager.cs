@@ -8,53 +8,53 @@ using System.Net;
 public class QuizManager : MonoBehaviour
 {
     [Header("UI Elements")]
-    public Text questionText; // Le texte pour la question
-    public Button[] answerButtons; // Tableau de boutons de réponses (jusqu'à 4)
+    public Text questionText;
+    public Button[] boutonsReponse; // Tableau de boutons de réponses (jusqu'à 4)
 
     [Header("Quiz Data")]
     private List<QuizQuestion> quizQuestions = new List<QuizQuestion>(); // Liste des questions
-    private int currentQuestionIndex = 0;
-    private bool[] playerSelections; // Sélections du joueur pour la question actuelle
+    private int indexQuestionActu = 0;
+    private bool[] selectionJoueur; // Sélections du joueur pour la question actuelle
 
     private int totalScore = 0; // Score total du joueur
 
     [Header("CSV Source")]
-    public string csvURL = "https://docs.google.com/spreadsheets/d/1abcdEfGhijKlMnOpQrStuvWxYZ1234/export?format=csv"; // URL du fichier CSV ou chemin local
+    public string csvURL = "https://docs.google.com/spreadsheets/d/1abcdEfGhijKlMnOpQrStuvWxYZ1234/export?format=csv"; // URL du fichier CSV
 
     // Structure représentant une question du quiz
     [System.Serializable]
     public class QuizQuestion
     {
         public string question;
-        public string[] answers;
-        public List<int> correctAnswerIndices;
+        public string[] reponses;
+        public List<int> reponseCorrectQuestion;
     }
 
     void Start()
     {
-        StartCoroutine(DownloadQuizData()); // Démarrer le téléchargement du CSV au démarrage du jeu
+        StartCoroutine(TelechargementDataQuiz()); // Démarrer le téléchargement du CSV au démarrage
     }
 
     // Téléchargement et lecture du fichier CSV
-    IEnumerator DownloadQuizData()
+    IEnumerator TelechargementDataQuiz()
     {
         // Utiliser un WebClient pour télécharger le fichier CSV
         using (WebClient client = new WebClient())
         {
             string csvData = client.DownloadString(csvURL);
-            ParseCSV(csvData); // Parser les données après le téléchargement
+            AnalyseFichierCSV(csvData); // Parser les données après le téléchargement
         }
 
         yield return null; // Continuer après la fin de la coroutine
     }
 
-    // Lecture et parsing du fichier CSV
-    void ParseCSV(string csvData)
+    // Lecture et analyse du fichier CSV
+    void AnalyseFichierCSV(string csvData)
     {
         StringReader reader = new StringReader(csvData);
         string line;
 
-        // Ignorer la première ligne (header)
+        // Ignorer la première ligne
         reader.ReadLine();
 
         while ((line = reader.ReadLine()) != null)
@@ -62,21 +62,31 @@ public class QuizManager : MonoBehaviour
             // Diviser chaque ligne par les virgules (','), ajuster selon votre format
             string[] fields = line.Split(',');
 
+            // Vérifier si la ligne contient suffisamment de colonnes (6 dans votre cas : question + 4 réponses + indices des bonnes réponses)
+            if (fields.Length < 6)
+            {
+                Debug.LogWarning("Ligne mal formatée ou incomplète : " + line);
+                continue; // Ignorer cette ligne et passer à la suivante
+            }
+
             QuizQuestion question = new QuizQuestion();
             question.question = fields[0];
-            question.answers = new string[4];
+            question.reponses = new string[4];
 
             for (int i = 0; i < 4; i++)
             {
-                question.answers[i] = fields[i + 1];
+                question.reponses[i] = fields[i + 1];
             }
 
             // Extraire les bonnes réponses (qui peuvent être multiples)
-            question.correctAnswerIndices = new List<int>();
-            string[] correctAnswers = fields[5].Split(',');
-            foreach (string correctAnswer in correctAnswers)
+            question.reponseCorrectQuestion = new List<int>();
+            string[] reponsesCorrect = fields[5].Split(',');
+            foreach (string laReponseCorrect in reponsesCorrect)
             {
-                question.correctAnswerIndices.Add(int.Parse(correctAnswer) - 1); // Convertir en index 0-based
+                if (int.TryParse(laReponseCorrect, out int indexReponse))
+                {
+                    question.reponseCorrectQuestion.Add(indexReponse - 1); // Convertir en index 0-based
+                }
             }
 
             // Ajouter la question à la liste des questions
@@ -85,40 +95,39 @@ public class QuizManager : MonoBehaviour
 
         // Lancer le quiz après avoir chargé les questions
         LoadQuestion();
-    }
+}
 
     // Charger une question du quiz
     void LoadQuestion()
     {
-        if (currentQuestionIndex >= quizQuestions.Count)
+        if (indexQuestionActu >= quizQuestions.Count)
         {
             EndQuiz(); // Fin du quiz si toutes les questions ont été posées
             return;
         }
 
         // Obtenir la question actuelle
-        QuizQuestion currentQuestion = quizQuestions[currentQuestionIndex];
+        QuizQuestion questionActuel = quizQuestions[indexQuestionActu];
 
-        // Afficher la question
-        questionText.text = currentQuestion.question;
+        questionText.text = questionActuel.question;
 
         // Initialiser les sélections du joueur
-        playerSelections = new bool[currentQuestion.answers.Length];
+        selectionJoueur = new bool[questionActuel.reponses.Length];
 
-        // Afficher les réponses et gérer les boutons
-        for (int i = 0; i < answerButtons.Length; i++)
+        // Afficher les réponses et gestion boutons
+        for (int i = 0; i < boutonsReponse.Length; i++)
         {
-            if (i < currentQuestion.answers.Length)
+            if (i < questionActuel.reponses.Length)
             {
-                answerButtons[i].gameObject.SetActive(true);
-                answerButtons[i].GetComponentInChildren<Text>().text = currentQuestion.answers[i];
-                int buttonIndex = i; // Stocker l'index pour le onClick
-                answerButtons[i].onClick.RemoveAllListeners(); // Nettoyer les anciens listeners
-                answerButtons[i].onClick.AddListener(() => OnAnswerButtonClicked(buttonIndex)); // Ajouter le listener
+                boutonsReponse[i].gameObject.SetActive(true);
+                boutonsReponse[i].GetComponentInChildren<Text>().text = questionActuel.reponses[i];
+                int indexBouton = i; // Stocker l'index (pour le click)
+                boutonsReponse[i].onClick.RemoveAllListeners(); // Nettoyer les anciens listeners
+                boutonsReponse[i].onClick.AddListener(() => OnAnswerButtonClicked(indexBouton)); // Ajouter d'un listener
             }
             else
             {
-                answerButtons[i].gameObject.SetActive(false); // Désactiver les boutons non utilisés
+                boutonsReponse[i].gameObject.SetActive(false); // Désactiver les boutons non utilisés
             }
         }
     }
@@ -127,7 +136,7 @@ public class QuizManager : MonoBehaviour
     void OnAnswerButtonClicked(int index)
     {
         // Inverser la sélection (sélectionner/désélectionner)
-        playerSelections[index] = !playerSelections[index];
+        selectionJoueur[index] = !selectionJoueur[index];
 
         // Mettre à jour la couleur du bouton pour indiquer la sélection
         UpdateButtonColor(index);
@@ -136,34 +145,34 @@ public class QuizManager : MonoBehaviour
     // Change la couleur du bouton en fonction de la sélection
     void UpdateButtonColor(int index)
     {
-        ColorBlock colors = answerButtons[index].colors;
-        if (playerSelections[index])
+        ColorBlock colors = boutonsReponse[index].colors;
+        if (selectionJoueur[index])
         {
-            colors.normalColor = Color.green; // Sélectionné
+            colors.normalColor = Color.green;
         }
         else
         {
-            colors.normalColor = Color.white; // Non sélectionné
+            colors.normalColor = Color.white;
         }
-        answerButtons[index].colors = colors;
+        boutonsReponse[index].colors = colors;
     }
 
-    // Calcul du score pour une question
-    public void CalculateScore()
+    // Calcul du score pour 1 question
+    public void CalculDuScore()
     {
-        QuizQuestion currentQuestion = quizQuestions[currentQuestionIndex];
+        QuizQuestion questionActuel = quizQuestions[indexQuestionActu];
         int questionScore = 0;
 
-        for (int i = 0; i < currentQuestion.answers.Length; i++)
+        for (int i = 0; i < questionActuel.reponses.Length; i++)
         {
-            if (playerSelections[i] == currentQuestion.correctAnswerIndices.Contains(i))
+            if (selectionJoueur[i] == questionActuel.reponseCorrectQuestion.Contains(i))
             {
                 questionScore++; // Ajouter des points si la réponse est correcte
             }
         }
 
         totalScore += questionScore;
-        currentQuestionIndex++; // Passer à la question suivante
+        indexQuestionActu++; // Passer à la question suivante
         LoadQuestion(); // Charger la question suivante
     }
 
