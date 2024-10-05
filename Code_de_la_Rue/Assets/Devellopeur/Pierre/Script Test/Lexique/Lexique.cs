@@ -10,6 +10,9 @@ public class Lexique : MonoBehaviour
     public GameObject PanelDescription;
     public GameObject PanelLexique;
     public GameObject PanelButton;
+    public GameObject PanelCategorie;
+    public GameObject PanelTheme;
+
     
 
     // A Afficher
@@ -20,7 +23,16 @@ public class Lexique : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Fait en sorte que ce soit bien le panel theme qui apparaisse en premier 
+        PanelCategorie.SetActive(false);
+        PanelTheme.SetActive(true);
+    }
+
+    void Awake()
+    {
+        //Fait en sorte que ce soit bien le panel theme qui apparaisse en premier 
+        PanelCategorie.SetActive(false);
+        PanelTheme.SetActive(true);
     }
 
     // Update is called once per frame
@@ -31,14 +43,14 @@ public class Lexique : MonoBehaviour
 
     public void OpenText(string description)
     {
-        //Récupère l'objet dernièrement séléctionné est le stock dans la variable
+        //Rï¿½cupï¿½re l'objet derniï¿½rement sï¿½lï¿½ctionnï¿½ est le stock dans la variable
         GameObject clickedButton = EventSystem.current.currentSelectedGameObject;
 
         //CATEGORIE
 
         Transform ancestor = clickedButton.transform;
 
-        //Récupère l'ancêtre 4 du boutton
+        //Rï¿½cupï¿½re l'ancï¿½tre 4 du boutton
         for (int i = 0; i < 4; i++)
         {
             if (ancestor != null)
@@ -48,11 +60,11 @@ public class Lexique : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Le parent à la hiérarchie demandée n'existe pas.");
+                Debug.LogError("Le parent ï¿½ la hiï¿½rarchie demandï¿½e n'existe pas.");
                 return;
             }
         }
-        // Trouver le composant Text dans cet ancêtre
+        // Trouver le composant Text dans cet ancï¿½tre
         TextMeshProUGUI textComponent = ancestor.GetComponentInChildren<TextMeshProUGUI>();
         //l'applique au titre de la definition
         Categorie.text = textComponent.text;
@@ -60,7 +72,7 @@ public class Lexique : MonoBehaviour
 
         //TITRE
 
-        //Je récupère le textmeshpro de l'enfant du gameobject dernièrement séléctionner soit le boutton
+        //Je rï¿½cupï¿½re le textmeshpro de l'enfant du gameobject derniï¿½rement sï¿½lï¿½ctionner soit le boutton
         TextMeshProUGUI buttonText = clickedButton.GetComponentInChildren<TextMeshProUGUI>();
         titre.text = buttonText.text;
 
@@ -83,5 +95,11 @@ public class Lexique : MonoBehaviour
         PanelButton.SetActive(true);
         PanelLexique.SetActive(false);
         
+    }
+
+    public void OuvrirCategorie()
+    {
+        PanelCategorie.SetActive(true);
+        PanelTheme.SetActive(false);
     }
 }
