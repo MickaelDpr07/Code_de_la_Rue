@@ -21,9 +21,6 @@ public class ZoomInZoomOut : MonoBehaviour
     [SerializeField]
     RectTransform canvasRect; // Le RectTransform du Canvas
 
-    [SerializeField]
-    Text text;
-
     // Use this for initialization
     void Start()
     {
@@ -68,7 +65,6 @@ public class ZoomInZoomOut : MonoBehaviour
             ApplyCameraBounds();
         }
 
-        text.text = "Camera size " + mainCamera.orthographicSize;
     }
 
     // Limite le mouvement et le zoom de la caméra pour rester dans les limites du Canvas
