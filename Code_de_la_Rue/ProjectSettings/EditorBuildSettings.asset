@@ -15,8 +15,11 @@ EditorBuildSettings:
     path: Assets/Scenes/TestVerbes.unity
     guid: 55bcd20cb9bc5b142b55eca473a57fb7
   - enabled: 1
-    path: Assets/Scenes/PierreTest.unity
+    path: "Assets/Scenes/Casse-t\xEAte/Puzzle/C1P1/C1P1.unity"
     guid: 5f5645f7c36b90e4da47a093e159a49e
+  - enabled: 1
+    path: "Assets/Scenes/Casse-t\xEAte/Puzzle/C1P2/C1P2.unity"
+    guid: 822ababdeee6aa842ac49b4b126be3f0
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 1c31177fe349f3b44b78ba227027416b,
       type: 2}
