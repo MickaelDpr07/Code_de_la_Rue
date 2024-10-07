@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 17">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #efec87;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #afabab;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="Calque_7">
+    <g id="Ellipse_1">
+      <circle class="cls-1" cx="8.5" cy="8.5" r="8.5"/>
+      <circle class="cls-2" cx="8.5" cy="8.5" r="7.5"/>
+    </g>
+  </g>
+</svg>

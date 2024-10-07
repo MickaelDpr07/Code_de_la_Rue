@@ -6,25 +6,33 @@ using UnityEngine.UI;
 public class MenuPrincipal : MonoBehaviour
 {
 
-    [SerializeField] private GameObject panelBoutton;
+    //[SerializeField] private GameObject panelBoutton;
     [SerializeField] private GameObject panelParametres;
     [SerializeField] private GameObject panelLexique;
     [SerializeField] private GameObject panelSelection;
-
-    private void Start()
+    [SerializeField] private GameObject panelLieux;
+       private void Start()
     {
-        // Pour s'assurer que le menu principal soit toujours ouvert à l'ouverture de la scene ( au cas ou le panel soit desactivez dans l'editeur)
-        panelBoutton.SetActive(true);
+        //Dans le cas ou le menu selection de niveaux est le "menu principal"
+        panelSelection.SetActive(true);
+        //panelBoutton.SetActive(false);
+        panelParametres.SetActive(false);
+        panelLexique.SetActive(false);
+        panelLieux.SetActive(false);
+
+
+        // Pour s'assurer que le menu principal soit toujours ouvert ï¿½ l'ouverture de la scene ( au cas ou le panel soit desactivez dans l'editeur)
+        //panelBoutton.SetActive(true);
         panelParametres.SetActive(false);
     }
 
-    // Méthode pour charger la scène
+    // Mï¿½thode pour charger la scï¿½ne
     public void OpenScene(string Scene)
     {
-        // Vérifie que la scene existe
+        // Vï¿½rifie que la scene existe
         if (!string.IsNullOrEmpty(Scene))
         {
-            // Charge la scène
+            // Charge la scï¿½ne
             SceneManager.LoadScene(Scene);
         }
         else
@@ -33,29 +41,50 @@ public class MenuPrincipal : MonoBehaviour
         }
     }
 
-    public void OpenParamètres()
+    public void OpenParametres()
     {
-        panelBoutton.SetActive(false);
         panelParametres.SetActive(true);
+        //panelBoutton.SetActive(false);
+        panelLexique.SetActive(false);
+        panelSelection.SetActive(false);
+        panelLieux.SetActive(false);
     }
 
     public void AppliquerParametres()
     {
-        panelBoutton.SetActive(true);
+        //panelBoutton.SetActive(true);
         panelParametres.SetActive(false);
+        panelLexique.SetActive(false);
+        panelSelection.SetActive(false);
+        panelLieux.SetActive(false);
 
-        // Mettre en place la sauvegarde et l'application des paramètres
+        // Mettre en place la sauvegarde et l'application des paramï¿½tres
     }
 
     public void OpenLexique()
     {
-        panelBoutton.SetActive(false);
         panelLexique.SetActive(true);
+        //panelBoutton.SetActive(false);
+        panelParametres.SetActive(false);
+        panelSelection.SetActive(false);
+        panelLieux.SetActive(false);
     }
 
     public void OpenSelection()
     {
-        panelBoutton.SetActive(false);
         panelSelection.SetActive(true);
+        //panelBoutton.SetActive(false);
+        panelParametres.SetActive(false);
+        panelLexique.SetActive(false);
+        panelLieux.SetActive(false);
+    }
+
+    public void OpenLieux()
+    {
+        panelLieux.SetActive(true);
+        //panelBoutton.SetActive(false);
+        panelParametres.SetActive(false);
+        panelLexique.SetActive(false);
+        panelSelection.SetActive(false);
     }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115 149">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Calque_7">
+    <g id="Icone_Lexique">
+      <path class="cls-1" d="M106.78,0h-63.78v61l-12.5-12-12.5,12V0h-9.78C3.68,0,0,3.68,0,8.22v132.57c0,4.54,3.68,8.22,8.22,8.22h98.57c4.54,0,8.22-3.68,8.22-8.22V8.22c0-4.54-3.68-8.22-8.22-8.22Z"/>
+    </g>
+  </g>
+</svg>
