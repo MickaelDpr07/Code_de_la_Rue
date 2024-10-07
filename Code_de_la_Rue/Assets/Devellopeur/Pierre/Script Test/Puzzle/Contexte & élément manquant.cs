@@ -23,8 +23,10 @@ public class Contexte : MonoBehaviour
     //Element relatif à l'élément manquant
     public GameObject Résolution;
     public SVGImage Img_Résolution;
-    private bool Elementmanquantreussi = false;
+    public bool completed = false;
     public SVGImage img_afficher;
+
+    public GameManager GameManager;
 
     void Start()
     {
@@ -55,7 +57,7 @@ public class Contexte : MonoBehaviour
 
                     if (txtContexte != null)
                     {
-                        if(!Elementmanquantreussi)
+                        if(!completed)
                         {
                             txtContexte.text = texte1; // Assigner texte1 au TextMeshPro
                         }
@@ -104,11 +106,13 @@ public class Contexte : MonoBehaviour
         if (selectedButton == BTN_Réponse)
         {
             Debug.Log("Réponse correcte !" + selectedButton);
+            GameManager.NbrPuzzleRéussi++;
+            GameManager.CheckPuzzle();
             Reponse.SetActive(false);
             PopUp.SetActive(true);
             txt_Contexte.text = texte2;
             Résolution.SetActive(false);
-            Elementmanquantreussi = true;
+            completed = true;
             img_afficher.sprite = Img_Résolution.sprite;
         }
         else

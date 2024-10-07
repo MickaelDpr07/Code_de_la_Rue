@@ -17,7 +17,17 @@ public class Elemententrop : MonoBehaviour
 
     [SerializeField]
     public GameObject[] ElementsEnTrop; // Variable pour les différents éléments en trop
-    private GameObject[] ElementsSelectionnées; // Variable pour stockés les éléments séléctionnées
+    public GameObject[] ElementsBon; // Variable pour les différents éléments bon
+    private Toggle selectedToggle;
+
+    public Button BouttonContexte;
+
+    public bool completed;
+
+    public GameManager GameManager;
+
+    
+    private List<GameObject> ElementsSelectionnées = new List<GameObject>(); // liste pour gérer la sélection dynamiquement
 
     void Start()
     {
@@ -28,29 +38,25 @@ public class Elemententrop : MonoBehaviour
     {
 
     }
+
     public void OnOpenPrefabButtonClick()
     {
         Debug.Log("oui");
         if (PopUp != null)
         {
-            // Affiche ou cache le popup en fonction de son état actuel
-            bool isActive = PopUp.activeSelf; // Vérifie si le popup est actuellement actif
-            PopUp.SetActive(!isActive); // Inverse l'état
-                                        // Cherche l'enfant avec le nom "Txt_contexte"
+            bool isActive = PopUp.activeSelf;
+            PopUp.SetActive(!isActive);
+
             Transform txtContexteTransform = PopUp.transform.Find("Txt_contexte");
 
-            // Vérifie si l'élément existe et applique le texte
             if (txtContexteTransform != null)
             {
-                // Récupérer le composant TMP_Text et appliquer le texte
                 TMP_Text txtContexte = txtContexteTransform.GetComponent<TMP_Text>();
                 txt_Contexte = txtContexte;
 
                 if (txtContexte != null)
                 {
-                        txtContexte.text = texte1; // Assigner texte1 au TextMeshPro
-                 
-
+                    txtContexte.text = texte1;
                 }
                 else
                 {
@@ -62,24 +68,130 @@ public class Elemententrop : MonoBehaviour
                 Debug.LogError("L'élément 'Txt_contexte' n'a pas été trouvé dans le prefab.");
             }
         }
-
         else
         {
             Debug.LogError("Le prefab n'est pas assigné.");
         }
     }
 
-        public void OnClosePrefabButtonClick()
+    public void OnClosePrefabButtonClick()
+    {
+        PopUp.SetActive(false);
+    }
+
+    // Méthode pour sélectionner une réponse
+    public void SelectButton(Toggle button)
+    {
+        GameObject selectedElement = button.gameObject;
+
+        if (button.isOn)
         {
-            PopUp.SetActive(false);
+            // Ajoute l'élément à la liste ElementsSelectionnées
+            AddElementToSelection(selectedElement);
+
+            SVGImage svgImage = selectedElement.GetComponent<SVGImage>();
+            if (svgImage != null)
+            {
+                svgImage.color = Color.red;
+            }
+            else
+            {
+                Debug.LogWarning("Le composant SVGImage n'a pas été trouvé sur l'élément sélectionné.");
+            }
+        }
+        else
+        {
+            // Retire l'élément de la sélection
+            RemoveElementFromSelection(selectedElement);
+
+            SVGImage svgImage = selectedElement.GetComponent<SVGImage>();
+            if (svgImage != null)
+            {
+                svgImage.color = Color.white;
+            }
+        }
+    }
+
+    private void AddElementToSelection(GameObject element)
+    {
+        // Ajoute l'élément uniquement s'il n'est pas déjà dans la liste
+        if (!ElementsSelectionnées.Contains(element))
+        {
+            ElementsSelectionnées.Add(element);
+            Debug.Log("Élément ajouté à la sélection.");
+        }
+        else
+        {
+            Debug.LogWarning("L'élément est déjà dans la sélection.");
+        }
+    }
+
+    private void RemoveElementFromSelection(GameObject element)
+    {
+        if (ElementsSelectionnées.Contains(element))
+        {
+            ElementsSelectionnées.Remove(element);
+            Debug.Log("Élément retiré de la sélection.");
+        }
+        else
+        {
+            Debug.LogWarning("L'élément n'a pas été trouvé dans la sélection.");
+        }
+    }
+
+    // Méthode pour vérifier si la réponse est correcte
+    public void CheckReponse()
+    {
+        bool reponseCorrecte = true;
+
+        // Vérifier que le nombre d'éléments sélectionnés est égal au nombre d'éléments en trop
+        if (ElementsSelectionnées.Count != ElementsEnTrop.Length)
+        {
+            reponseCorrecte = false;
+        }
+        else
+        {
+            // Parcourt chaque élément sélectionné et vérifie qu'il fait partie des éléments en trop
+            foreach (GameObject elementSelectionné in ElementsSelectionnées)
+            {
+                if (!System.Array.Exists(ElementsEnTrop, element => element == elementSelectionné))
+                {
+                    reponseCorrecte = false;
+                    break;
+                }
+            }
         }
 
-    public void OnClickElement()
-    {
-        //Si il n'est pas séléctionnée, l'ajoute à la liste et change la couleur
+        // Affiche le résultat dans le texte contextuel ou dans la console
+        if (reponseCorrecte)
+        {
+            txt_Contexte.text = texte2;
+            GameManager.NbrPuzzleRéussi++;
+            GameManager.CheckPuzzle();
+            //On detruit les elements en trop
+            foreach (GameObject element in ElementsEnTrop)
+            {
+                if (element != null) // Vérifie que l'élément n'est pas null avant de le détruire
+                {
+                    Destroy(element);
+                    Debug.Log(element.name + " a été détruit.");
+                }
+            }
 
-        // Compare avec la liste elementen trop
+            //Empêche de reselectionnées les éléments
+            foreach(GameObject elementbon in ElementsBon)
+            {
+                if (elementbon != null) // Vérifie que l'élément n'est pas null avant de le détruire
+                {
+                    elementbon.GetComponent<Toggle>().interactable = false;
+                }
+            }
 
-        //Si sa correspond, affiche le dialogue résolu
+            BouttonContexte.interactable = false;
+        }
+        else
+        {
+            txt_Contexte.text = "Je ne suis pas sur que ce soit ça..";
+        }
     }
 }
