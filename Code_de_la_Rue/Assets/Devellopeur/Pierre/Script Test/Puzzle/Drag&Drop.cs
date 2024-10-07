@@ -3,10 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Deplacement : MonoBehaviour
 {
+    private bool CanDrag = true;
     private bool isDragging = false;
+
+    public bool completed = false;
+    private TMP_Text txt_Contexte; // Texte à afficher
+
+
     private Vector2 originalLocalPointerPosition;
     private Vector3 originalPanelLocalPosition;
     private RectTransform rectTransform;
@@ -14,9 +21,17 @@ public class Deplacement : MonoBehaviour
 
     public GameObject[] EmplacementDisponilbes; // Emplacements disponibles
     public GameObject EmplacementBon; // Emplacement correct
+    public GameObject PopUp;
+    public GameObject Contexte;
+
+    [SerializeField]
+    public string texte1,texte2; //Texte de contexte
+
+    public GameManager GameManager;
 
     void Start()
     {
+        OpenPopUp();
         // Récupération du RectTransform de l'image
         rectTransform = GetComponent<RectTransform>();
 
@@ -36,7 +51,7 @@ public class Deplacement : MonoBehaviour
     public void DragAndDrop()
     {
         // Vérifie s'il y a un ou plusieurs touchés sur l'écran
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 && CanDrag)
         {
             Touch touch = Input.GetTouch(0);
 
@@ -47,7 +62,6 @@ public class Deplacement : MonoBehaviour
                     if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, touch.position, canvas.worldCamera))
                     {
                         isDragging = true;
-
                         // Conversion des coordonnées de l'écran en coordonnées locales
                         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, touch.position, canvas.worldCamera, out originalLocalPointerPosition);
                         originalPanelLocalPosition = rectTransform.localPosition;
@@ -82,12 +96,6 @@ public class Deplacement : MonoBehaviour
                     {
                         isDragging = false;
                         Debug.Log("Drag ended");
-
-                        // Cache les emplacements
-                        foreach (GameObject emplacement in EmplacementDisponilbes)
-                        {
-                            emplacement.SetActive(false); // Cache les emplacements après le drag
-                        }
                     }
                     break;
             }
@@ -97,31 +105,89 @@ public class Deplacement : MonoBehaviour
     // Méthode pour détecter les collisions avec les emplacements
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Collision detected with: " + other.gameObject.name); // Pour vérifier si la collision est détectée
+
         if (isDragging)
         {
-            // Parcourir tous les emplacements disponibles
             foreach (GameObject emplacement in EmplacementDisponilbes)
             {
-                // Vérifiez si l'objet de collision est l'un des emplacements
                 if (other.gameObject == emplacement)
                 {
-                    // Vérifiez si l'emplacement est le bon
                     if (emplacement == EmplacementBon)
                     {
                         Debug.Log("Correct placement!");
-                        // Désactive l'élément glissé
-                        gameObject.SetActive(false);
-                        // Vous pouvez également gérer la logique de réussite ici
+                        foreach (GameObject place in EmplacementDisponilbes)
+                        {
+                            place.SetActive(false); // Cache les emplacements après le drag
+                        }
+                        GameManager.NbrPuzzleRéussi++;
+                        CanDrag = false;
+                        Contexte.SetActive(false);
+                        completed = true;
+                        OpenPopUp();
                     }
                     else
                     {
                         Debug.Log("Incorrect placement");
-                        // Logique pour gérer un mauvais emplacement (optionnelle)
+                        OpenPopUp();
                     }
                 }
             }
         }
     }
 
-    // Assurez-vous d'activer le trigger sur les BoxColliders2D de vos emplacements
+    public void ClosePopUp()
+    {
+        PopUp.SetActive(false);
+    }
+
+    public void OpenPopUp()
+    {
+        Debug.Log("oui");
+        if (PopUp != null)
+        {
+            // Affiche ou cache le popup en fonction de son état actuel
+            bool isActive = PopUp.activeSelf; // Vérifie si le popup est actuellement actif
+            PopUp.SetActive(!isActive); // Inverse l'état
+
+            if (PopUp.activeSelf) // Si le popup est maintenant actif
+            {
+                // Cherche l'enfant avec le nom "Txt_contexte"
+                Transform txtContexteTransform = PopUp.transform.Find("Txt_contexte");
+
+                // Vérifie si l'élément existe et applique le texte
+                if (txtContexteTransform != null)
+                {
+                    // Récupérer le composant TMP_Text et appliquer le texte
+                    TMP_Text txtContexte = txtContexteTransform.GetComponent<TMP_Text>();
+                    txt_Contexte = txtContexte;
+
+                    if (txtContexte != null)
+                    {
+                        if (!completed)
+                        {
+                            txtContexte.text = texte1; // Assigner texte1 au TextMeshPro
+                        }
+                        else
+                        {
+                            txtContexte.text = texte2; // Assigner texte1 au TextMeshPro
+                        }
+
+                    }
+                    else
+                    {
+                        Debug.LogError("Le composant TMP_Text n'a pas été trouvé sur 'Txt_contexte'.");
+                    }
+                }
+                else
+                {
+                    Debug.LogError("L'élément 'Txt_contexte' n'a pas été trouvé dans le prefab.");
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("Le prefab n'est pas assigné.");
+        }
+    }
 }

@@ -30,11 +30,11 @@ public class Contexte : MonoBehaviour
 
     void Start()
     {
-        OnOpenPrefabButtonClick();
+        OpenPopUp();
     }
 
     // Fonction appelée lorsque le bouton est cliqué
-    public void OnOpenPrefabButtonClick()
+    public void OpenPopUp()
     {
         Debug.Log("oui");
         if (PopUp != null)
@@ -84,7 +84,7 @@ public class Contexte : MonoBehaviour
         }
     }
 
-    public void OnClosePrefabButtonClick()
+    public void ClosePopUp()
     {
         PopUp.SetActive(false);
     }
