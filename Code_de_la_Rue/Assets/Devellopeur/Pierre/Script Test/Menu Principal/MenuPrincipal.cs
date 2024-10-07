@@ -11,6 +11,7 @@ public class MenuPrincipal : MonoBehaviour
     [SerializeField] private GameObject panelLexique;
     [SerializeField] private GameObject panelSelection;
     [SerializeField] private GameObject panelLieux;
+
        private void Start()
     {
         //Dans le cas ou le menu selection de niveaux est le "menu principal"
