@@ -7,25 +7,33 @@ using System.Net;
 
 public class QuizManager : MonoBehaviour
 {
-    [Header("UI Elements")]
     public Text questionText;
-    public Button[] boutonsReponse; // Tableau de boutons de réponses (jusqu'à 4)
-    public Button validerButton; // Bouton pour valider les réponses du joueur
-    public Text progressionText; // Texte pour afficher "Question X sur Y"
+    public Text explicationText;
+    public Button[] boutonsReponse;
+    public Button validerButton;
+    public Text progressionText;
 
-    [Header("Quiz Data")]
-    private List<QuizQuestion> quizQuestions = new List<QuizQuestion>(); // Liste des questions
+    public GameObject finQuizPanel;
+    public Text scoreText;
+
+    public string csvURL = "https://docs.google.com/spreadsheets/d/1abcdEfGhijKlMnOpQrStuvWxYZ1234/export?format=csv";
+
+    [SerializeField] private Color couleurNonSelectionnee = Color.cyan;
+    [SerializeField] private Color couleurSelectionnee = Color.white;
+    [SerializeField] private Color contourBlanc = Color.white;
+    [SerializeField] private int taillePoliceNonSelectionnee = 20;
+    [SerializeField] private int taillePoliceSelectionnee = 24;
+    [SerializeField] private Font policeTexte;
+    [SerializeField] private float largeurContour = 5f;
+    [SerializeField] private float tempsAvantProchaine = 2f;
+
+    [SerializeField] private string scoreTextFormat = "Votre score final est :";
+
+    private List<QuizQuestion> quizQuestions = new List<QuizQuestion>();
     private int indexQuestionActu = 0;
-    private bool[] selectionJoueur; // Sélections du joueur pour la question actuelle
-
-    private int totalScore = 0; // Score total du joueur
-
-    [Header("CSV Source")]
-    public string csvURL = "https://docs.google.com/spreadsheets/d/1abcdEfGhijKlMnOpQrStuvWxYZ1234/export?format=csv"; // URL du fichier CSV
-
-    [Header("Fin Quiz")]
-    public GameObject finQuizPanel; // Référence au panneau de fin du quiz
-    public Text scoreText; // Référence au texte qui affichera le score final
+    private bool[] selectionJoueur;
+    private int totalScore = 0;
+    private QuizQuestion questionActuel;
 
     [System.Serializable]
     public class QuizQuestion
@@ -33,16 +41,15 @@ public class QuizManager : MonoBehaviour
         public string question;
         public string[] reponses;
         public List<int> reponseCorrectQuestion;
+        public string explication;
     }
-
-    private QuizQuestion questionActuel; // Variable pour la question actuelle
 
     void Start()
     {
-        StartCoroutine(TelechargementDataQuiz()); // Démarrer le téléchargement du CSV au démarrage
-        validerButton.interactable = false; // Désactiver le bouton valider au début
-        validerButton.onClick.AddListener(CalculDuScore); // Ajouter l'événement de validation
-        finQuizPanel.SetActive(false); // Assurez-vous que le panneau de fin de quiz est désactivé
+        StartCoroutine(TelechargementDataQuiz());
+        validerButton.interactable = false;
+        validerButton.onClick.AddListener(CalculDuScore);
+        explicationText.gameObject.SetActive(false);
     }
 
     IEnumerator TelechargementDataQuiz()
@@ -50,10 +57,9 @@ public class QuizManager : MonoBehaviour
         using (WebClient client = new WebClient())
         {
             string csvData = client.DownloadString(csvURL);
-            AnalyseFichierCSV(csvData); // Parser les données après le téléchargement
+            AnalyseFichierCSV(csvData);
         }
-
-        yield return null; // Continuer après la fin de la coroutine
+        yield return null;
     }
 
     void AnalyseFichierCSV(string csvData)
@@ -61,19 +67,21 @@ public class QuizManager : MonoBehaviour
         StringReader reader = new StringReader(csvData);
         string line;
 
-        reader.ReadLine(); // Ignorer la première ligne
+        reader.ReadLine();
 
         while ((line = reader.ReadLine()) != null)
         {
             string[] fields = line.Split(',');
 
-            if (fields.Length < 6) continue; // Ligne mal formatée ou incomplète
-
-            QuizQuestion question = new QuizQuestion
+            if (fields.Length < 7)
             {
-                question = fields[0],
-                reponses = new string[4]
-            };
+                Debug.LogWarning("Ligne mal formatée ou incomplète : " + line);
+                continue;
+            }
+
+            QuizQuestion question = new QuizQuestion();
+            question.question = fields[0];
+            question.reponses = new string[4];
 
             for (int i = 0; i < 4; i++)
             {
@@ -86,10 +94,11 @@ public class QuizManager : MonoBehaviour
             {
                 if (int.TryParse(laReponseCorrect, out int indexReponse))
                 {
-                    question.reponseCorrectQuestion.Add(indexReponse - 1); // Convertir en index 0-based
+                    question.reponseCorrectQuestion.Add(indexReponse - 1);
                 }
             }
 
+            question.explication = fields[6];
             quizQuestions.Add(question);
         }
 
@@ -100,143 +109,142 @@ public class QuizManager : MonoBehaviour
     {
         if (indexQuestionActu >= quizQuestions.Count)
         {
-            EndQuiz(); // Fin du quiz si toutes les questions ont été posées
+            EndQuiz();
             return;
         }
 
         questionActuel = quizQuestions[indexQuestionActu];
-
         questionText.text = questionActuel.question;
+        questionText.font = policeTexte;
         selectionJoueur = new bool[questionActuel.reponses.Length];
+        explicationText.gameObject.SetActive(false);
 
         for (int i = 0; i < boutonsReponse.Length; i++)
         {
-            if (i < questionActuel.reponses.Length)
+            if (i < questionActuel.reponses.Length && !string.IsNullOrEmpty(questionActuel.reponses[i]))
             {
                 boutonsReponse[i].gameObject.SetActive(true);
                 boutonsReponse[i].GetComponentInChildren<Text>().text = questionActuel.reponses[i];
-                int indexBouton = i; // Stocker l'index (pour le click)
-                boutonsReponse[i].onClick.RemoveAllListeners(); // Nettoyer les anciens listeners
-                boutonsReponse[i].onClick.AddListener(() => OnAnswerButtonClicked(indexBouton)); // Ajouter d'un listener
-                ResetButtonAppearance(i); // Réinitialiser l'apparence
+                boutonsReponse[i].GetComponentInChildren<Text>().font = policeTexte;
+                boutonsReponse[i].onClick.RemoveAllListeners();
+                int indexBouton = i;
+                boutonsReponse[i].onClick.AddListener(() => OnAnswerButtonClicked(indexBouton));
+                ResetButtonAppearance(i);
             }
             else
             {
-                boutonsReponse[i].gameObject.SetActive(false); // Désactiver les boutons non utilisés
+                boutonsReponse[i].gameObject.SetActive(false);
             }
         }
 
-        validerButton.interactable = false; // Désactiver le bouton de validation
-        progressionText.text = "Question " + (indexQuestionActu + 1) + " sur " + quizQuestions.Count; // Mise à jour du texte de progression
+        validerButton.interactable = false;
+        progressionText.text = "Question " + (indexQuestionActu + 1) + " sur " + quizQuestions.Count;
     }
 
     void OnAnswerButtonClicked(int index)
     {
-        selectionJoueur[index] = !selectionJoueur[index]; // Inverser la sélection
-        UpdateButtonAppearance(index); // Mettre à jour l'apparence du bouton
-        validerButton.interactable = true; // Activer le bouton "Valider"
+        selectionJoueur[index] = !selectionJoueur[index];
+        UpdateButtonAppearance(index);
+        validerButton.interactable = true;
     }
 
     void UpdateButtonAppearance(int index)
     {
         if (selectionJoueur[index])
         {
-            boutonsReponse[index].GetComponent<Image>().color = HexToColor("#43B2C1"); // Fond bleu clair
+            boutonsReponse[index].GetComponent<Image>().color = couleurSelectionnee;
             Text buttonText = boutonsReponse[index].GetComponentInChildren<Text>();
-            buttonText.color = Color.white; // Texte blanc
-            buttonText.fontSize = 24; // Texte plus grand
+            buttonText.color = contourBlanc;
+            buttonText.fontSize = taillePoliceSelectionnee;
 
             Outline outline = boutonsReponse[index].GetComponent<Outline>();
             if (outline == null)
             {
-                outline = boutonsReponse[index].gameObject.AddComponent<Outline>(); // Ajouter l'effet Outline
+                outline = boutonsReponse[index].gameObject.AddComponent<Outline>();
             }
-            outline.effectColor = Color.white; // Bordure blanche
-            outline.effectDistance = new Vector2(8, 8); // Augmenter l'épaisseur
+            outline.effectColor = contourBlanc;
+            outline.effectDistance = new Vector2(largeurContour, largeurContour);
         }
         else
         {
-            ResetButtonAppearance(index); // Réinitialiser l'apparence du bouton
+            ResetButtonAppearance(index);
         }
     }
 
     void ResetButtonAppearance(int index)
     {
-        Color bleuClair = HexToColor("#43B2C1");
-        boutonsReponse[index].GetComponent<Image>().color = bleuClair; // Couleur par défaut
+        boutonsReponse[index].GetComponent<Image>().color = couleurNonSelectionnee;
         Text buttonText = boutonsReponse[index].GetComponentInChildren<Text>();
-        buttonText.color = Color.white; // Texte blanc par défaut
-        buttonText.fontSize = 20; // Taille de texte par défaut
+        buttonText.color = Color.white;
+        buttonText.fontSize = taillePoliceNonSelectionnee;
 
         Outline outline = boutonsReponse[index].GetComponent<Outline>();
         if (outline != null)
         {
-            Destroy(outline); // Retirer l'effet Outline
+            Destroy(outline);
         }
-    }
-
-    Color HexToColor(string hex)
-    {
-        if (ColorUtility.TryParseHtmlString(hex, out Color color))
-        {
-            return color;
-        }
-        return Color.white;
     }
 
     public void CalculDuScore()
     {
+        bool correct = true;
+
         for (int i = 0; i < questionActuel.reponses.Length; i++)
         {
-            if (selectionJoueur[i] && questionActuel.reponseCorrectQuestion.Contains(i))
+            if (selectionJoueur[i] && !questionActuel.reponseCorrectQuestion.Contains(i))
             {
-                boutonsReponse[i].GetComponent<Image>().color = Color.green; // Vert pour bonne réponse
+                correct = false;
             }
-            else if (selectionJoueur[i] && !questionActuel.reponseCorrectQuestion.Contains(i))
+            else if (!selectionJoueur[i] && questionActuel.reponseCorrectQuestion.Contains(i))
             {
-                boutonsReponse[i].GetComponent<Image>().color = Color.red; // Rouge pour mauvaise réponse
+                correct = false;
             }
         }
 
-        StartCoroutine(DelayBeforeNextQuestion());
-    }
-
-    private IEnumerator DelayBeforeNextQuestion()
-    {
-        yield return new WaitForSeconds(1.5f); // Délai de 2 secondes
-
-        totalScore += GetScoreForCurrentQuestion(); // Calculer le score
-        indexQuestionActu++; // Passer à la question suivante
-
-        if (indexQuestionActu >= quizQuestions.Count)
+        if (correct)
         {
-            EndQuiz(); // Fin du quiz si toutes les questions ont été posées
+            totalScore++;
+            StartCoroutine(AfficherExplicationEtCouleur(questionActuel.explication));
         }
         else
         {
-            LoadQuestion(); // Charger la question suivante
+            ColorerBoutonsSelectionnes();
+            StartCoroutine(DelayBeforeNextQuestion());
         }
     }
 
-    private int GetScoreForCurrentQuestion()
+    IEnumerator AfficherExplicationEtCouleur(string explication)
     {
-        int questionScore = 0;
+        ColorerBoutonsSelectionnes();
+        explicationText.text = explication;
+        explicationText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(tempsAvantProchaine);
+        indexQuestionActu++;
+        LoadQuestion();
+    }
 
-        foreach (int correctIndex in questionActuel.reponseCorrectQuestion)
+    void ColorerBoutonsSelectionnes()
+    {
+        for (int i = 0; i < boutonsReponse.Length; i++)
         {
-            if (selectionJoueur[correctIndex])
+            if (i < questionActuel.reponses.Length && selectionJoueur[i])
             {
-                questionScore++;
+                Color targetColor = questionActuel.reponseCorrectQuestion.Contains(i) ? Color.green : Color.red;
+                boutonsReponse[i].GetComponent<Image>().color = targetColor;
             }
         }
-
-        return questionScore;
     }
 
-    public void EndQuiz()
+    IEnumerator DelayBeforeNextQuestion()
     {
-        scoreText.text = "Votre score final est : " + totalScore + " sur " + quizQuestions.Count + " questions. ";
+        yield return new WaitForSeconds(tempsAvantProchaine);
+        indexQuestionActu++;
+        LoadQuestion();
+    }
 
+    void EndQuiz()
+    {
+        scoreText.text = scoreTextFormat + " " + totalScore + " / " + quizQuestions.Count;
         finQuizPanel.SetActive(true);
     }
 }
