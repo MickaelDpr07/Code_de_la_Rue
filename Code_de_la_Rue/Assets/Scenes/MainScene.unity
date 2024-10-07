@@ -2408,6 +2408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f176007da2afa4c4793daf1e3040f10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panelBoutton: {fileID: 0}
   panelParametres: {fileID: 1176284052}
   panelLexique: {fileID: 2064106779}
   panelSelection: {fileID: 682778294}
