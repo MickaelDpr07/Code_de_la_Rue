@@ -12,9 +12,12 @@ public class Deplacement : MonoBehaviour
     private RectTransform rectTransform;
     private Canvas canvas;
 
+    public GameObject[] EmplacementDisponilbes; // Emplacements disponibles
+    public GameObject EmplacementBon; // Emplacement correct
+
     void Start()
     {
-        // Récupèration du RectTransform de l'image
+        // Récupération du RectTransform de l'image
         rectTransform = GetComponent<RectTransform>();
 
         // Récupération du canvas
@@ -63,6 +66,12 @@ public class Deplacement : MonoBehaviour
                             Vector3 offsetToOriginal = localPointerPosition - originalLocalPointerPosition;
                             rectTransform.localPosition = originalPanelLocalPosition + offsetToOriginal;
                         }
+
+                        // Affichage des emplacements
+                        foreach (GameObject emplacement in EmplacementDisponilbes)
+                        {
+                            emplacement.SetActive(true);
+                        }
                     }
                     break;
 
@@ -73,9 +82,46 @@ public class Deplacement : MonoBehaviour
                     {
                         isDragging = false;
                         Debug.Log("Drag ended");
+
+                        // Cache les emplacements
+                        foreach (GameObject emplacement in EmplacementDisponilbes)
+                        {
+                            emplacement.SetActive(false); // Cache les emplacements après le drag
+                        }
                     }
                     break;
             }
         }
     }
+
+    // Méthode pour détecter les collisions avec les emplacements
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (isDragging)
+        {
+            // Parcourir tous les emplacements disponibles
+            foreach (GameObject emplacement in EmplacementDisponilbes)
+            {
+                // Vérifiez si l'objet de collision est l'un des emplacements
+                if (other.gameObject == emplacement)
+                {
+                    // Vérifiez si l'emplacement est le bon
+                    if (emplacement == EmplacementBon)
+                    {
+                        Debug.Log("Correct placement!");
+                        // Désactive l'élément glissé
+                        gameObject.SetActive(false);
+                        // Vous pouvez également gérer la logique de réussite ici
+                    }
+                    else
+                    {
+                        Debug.Log("Incorrect placement");
+                        // Logique pour gérer un mauvais emplacement (optionnelle)
+                    }
+                }
+            }
+        }
+    }
+
+    // Assurez-vous d'activer le trigger sur les BoxColliders2D de vos emplacements
 }
