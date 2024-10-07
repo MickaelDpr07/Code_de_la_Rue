@@ -192,8 +192,8 @@ MonoBehaviour:
     y: 0
     width: 342
     height: 676
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -272,8 +272,8 @@ MonoBehaviour:
     y: 0
     width: 384
     height: 947
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -416,23 +416,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 368d0000
-      m_LastClickedID: 36150
-      m_ExpandedIDs: 328cffffe68cffff8ad4ffff90d4ffff98d4ffffb0d4ffff2efbffff3a5d00005e5d0000368d0000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 88d9ffff38daffff3cdaffffd8760000f8760000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: "Liste r\xE9ponses"
-        m_OriginalName: "Liste r\xE9ponses"
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 24646
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -812,9 +812,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 427.19952, y: 791.6041, z: 3470.058}
+    m_Target: {x: 307.67108, y: 951.4036, z: -1777.6383}
     speed: 2
-    m_Value: {x: 427.19952, y: 791.6041, z: 3470.058}
+    m_Value: {x: 307.67108, y: 951.4036, z: -1777.6383}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -860,13 +860,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.07044287, y: -0.0011996202, z: 0.000088472414, w: -0.99754304}
+    m_Target: {x: -0.04378423, y: 0.02307307, z: -0.0010105303, w: -0.99878323}
     speed: 2
-    m_Value: {x: -0.070440695, y: -0.0026958578, z: 0.00019413118, w: -0.9975123}
+    m_Value: {x: -0.04228562, y: 0.023074348, z: -0.00097590935, w: -0.9988386}
   m_Size:
-    m_Target: 2878.1375
+    m_Target: 24.117138
     speed: 2
-    m_Value: 2878.1375
+    m_Value: 410.1829
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -937,7 +937,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Devellopeur/Amelie/Menu Lexique
+    - Assets/Devellopeur/Amelie
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -945,16 +945,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Devellopeur/Amelie/Menu Lexique
+  - Assets/Devellopeur/Amelie
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Unity\CodeDeLaRue\CodeDeLaRue2\Code_de_la_Rue\Code_de_la_Rue
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 154}
-    m_SelectedIDs: e25d0000
-    m_LastClickedID: 24034
-    m_ExpandedIDs: 00000000a45d0000a65d0000b25d0000b45d0000d65d0000da5d000072a8000000ca9a3b
+    scrollPos: {x: 0, y: 127}
+    m_SelectedIDs: dc810000
+    m_LastClickedID: 33244
+    m_ExpandedIDs: 00000000c4810000c6810000ce810000dc81000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -982,7 +982,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000a45d0000a65d0000
+    m_ExpandedIDs: 00000000c4810000c6810000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
