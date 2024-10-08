@@ -411,7 +411,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "S\xE9rie Termin\xE9e !"
+  m_text: Serie Terminee !
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ead028b1536052e48b6c9a03dfa0ea06, type: 2}
   m_sharedMaterial: {fileID: 4588646082399409121, guid: ead028b1536052e48b6c9a03dfa0ea06,
@@ -439,7 +439,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 96.45
+  m_fontSize: 98.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
