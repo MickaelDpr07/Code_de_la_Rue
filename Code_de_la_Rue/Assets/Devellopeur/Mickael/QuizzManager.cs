@@ -21,16 +21,20 @@ public class QuizManager : MonoBehaviour
 
     public string csvURL = "https://docs.google.com/spreadsheets/d/1abcdEfGhijKlMnOpQrStuvWxYZ1234/export?format=csv";
 
-    [SerializeField] private Color couleurNonSelectionnee = Color.cyan;
-    [SerializeField] private Color couleurSelectionnee = Color.white;
+    [SerializeField] private Color colorFondSelection; // Couleur du fond du bouton quand sélectionné
+    [SerializeField] private Color colorFondNonSelection; // Couleur du fond du bouton quand non sélectionné
+    [SerializeField] private Color colorTXTSelection; // Couleur du texte du bouton quand sélectionné
+    [SerializeField] private Color colorTXTNonSelection; // Couleur du texte du bouton quand non sélectionné
+    [SerializeField] private Color couleurBonneReponse = Color.green; // Couleur pour une bonne réponse
+    [SerializeField] private Color couleurMauvaiseReponse = Color.red; // Couleur pour une mauvaise réponse
     [SerializeField] private Color contourBlanc = Color.white;
-    [SerializeField] private int taillePoliceNonSelectionnee = 20;
-    [SerializeField] private int taillePoliceSelectionnee = 24;
-    [SerializeField] private Font policeTexte;
     [SerializeField] private float largeurContour = 5f;
     [SerializeField] private float tempsAvantProchaine = 2f;
 
     [SerializeField] private string scoreTextFormat = "Votre score final est :";
+
+    // Champ pour la taille de sélection
+    [SerializeField] private int tailleSelection = 4; // Augmente la taille de la police lors de la sélection
 
     private List<QuizQuestion> quizQuestions = new List<QuizQuestion>();
     private int indexQuestionActu = 0;
@@ -76,7 +80,6 @@ public class QuizManager : MonoBehaviour
         }
         yield return null;
     }
-
 
     void AnalyseFichierCSV(string csvData)
     {
@@ -132,7 +135,6 @@ public class QuizManager : MonoBehaviour
         LoadQuestion();
     }
 
-
     void LoadQuestion()
     {
         if (indexQuestionActu >= quizQuestions.Count)
@@ -143,7 +145,6 @@ public class QuizManager : MonoBehaviour
 
         questionActuel = quizQuestions[indexQuestionActu];
         questionText.text = questionActuel.question;
-        questionText.font = policeTexte;
         selectionJoueur = new bool[questionActuel.reponses.Length];
         explicationText.gameObject.SetActive(false);
 
@@ -153,7 +154,6 @@ public class QuizManager : MonoBehaviour
             {
                 boutonsReponse[i].gameObject.SetActive(true);
                 boutonsReponse[i].GetComponentInChildren<Text>().text = questionActuel.reponses[i];
-                boutonsReponse[i].GetComponentInChildren<Text>().font = policeTexte;
                 boutonsReponse[i].onClick.RemoveAllListeners();
                 int indexBouton = i;
                 boutonsReponse[i].onClick.AddListener(() => OnAnswerButtonClicked(indexBouton));
@@ -180,17 +180,21 @@ public class QuizManager : MonoBehaviour
     {
         if (selectionJoueur[index])
         {
-            boutonsReponse[index].GetComponent<Image>().color = couleurSelectionnee;
+            boutonsReponse[index].GetComponent<Image>().color = colorFondSelection; // Utiliser la couleur de fond sélectionnée
             Text buttonText = boutonsReponse[index].GetComponentInChildren<Text>();
-            buttonText.color = contourBlanc;
-            buttonText.fontSize = taillePoliceSelectionnee;
+
+            // Changer la couleur du texte lorsque le bouton est sélectionné
+            buttonText.color = colorTXTSelection;
+
+            // Augmenter la taille de la police
+            buttonText.fontSize += tailleSelection;
 
             Outline outline = boutonsReponse[index].GetComponent<Outline>();
             if (outline == null)
             {
                 outline = boutonsReponse[index].gameObject.AddComponent<Outline>();
             }
-            outline.effectColor = contourBlanc;
+            outline.effectColor = Color.white; // Garder le contour blanc
             outline.effectDistance = new Vector2(largeurContour, largeurContour);
         }
         else
@@ -201,10 +205,14 @@ public class QuizManager : MonoBehaviour
 
     void ResetButtonAppearance(int index)
     {
-        boutonsReponse[index].GetComponent<Image>().color = couleurNonSelectionnee;
+        boutonsReponse[index].GetComponent<Image>().color = colorFondNonSelection; // Utiliser la couleur de fond non sélectionnée
         Text buttonText = boutonsReponse[index].GetComponentInChildren<Text>();
-        buttonText.color = Color.white;
-        buttonText.fontSize = taillePoliceNonSelectionnee;
+
+        // Réinitialiser la couleur du texte
+        buttonText.color = colorTXTNonSelection;
+
+        // Réinitialiser la taille de la police à sa taille d'origine
+        buttonText.fontSize = 20; // Remplacez par la taille d'origine
 
         Outline outline = boutonsReponse[index].GetComponent<Outline>();
         if (outline != null)
@@ -257,8 +265,8 @@ public class QuizManager : MonoBehaviour
         {
             if (i < questionActuel.reponses.Length && selectionJoueur[i])
             {
-                Color targetColor = questionActuel.reponseCorrectQuestion.Contains(i) ? Color.green : Color.red;
-                boutonsReponse[i].GetComponent<Image>().color = targetColor;
+                Color targetColor = questionActuel.reponseCorrectQuestion.Contains(i) ? couleurBonneReponse : couleurMauvaiseReponse;
+                boutonsReponse[i].GetComponent<Image>().color = targetColor; // Changer la couleur du fond
             }
         }
     }
