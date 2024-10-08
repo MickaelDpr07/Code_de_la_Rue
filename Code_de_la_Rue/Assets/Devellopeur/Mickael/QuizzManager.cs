@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // Ajoutez ceci pour gérer les scènes
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using TMPro;
 
 public class QuizManager : MonoBehaviour
 {
@@ -12,9 +14,10 @@ public class QuizManager : MonoBehaviour
     public Button[] boutonsReponse;
     public Button validerButton;
     public Text progressionText;
-
     public GameObject finQuizPanel;
     public Text scoreText;
+    public Button quitterButton;
+    public TextMeshProUGUI fichierText;
 
     public string csvURL = "https://docs.google.com/spreadsheets/d/1abcdEfGhijKlMnOpQrStuvWxYZ1234/export?format=csv";
 
@@ -47,9 +50,21 @@ public class QuizManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(TelechargementDataQuiz());
+
         validerButton.interactable = false;
         validerButton.onClick.AddListener(CalculDuScore);
+
         explicationText.gameObject.SetActive(false);
+
+        // Assurez-vous que le bouton quitter est désactivé tant que le quiz n'est pas terminé
+        quitterButton.gameObject.SetActive(false);
+        quitterButton.onClick.AddListener(QuitterQuiz); // Ajouter le comportement au bouton Quitter
+    }
+
+    // Méthode pour quitter et retourner à la scène principale
+    public void QuitterQuiz()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 
     IEnumerator TelechargementDataQuiz()
@@ -62,13 +77,25 @@ public class QuizManager : MonoBehaviour
         yield return null;
     }
 
+
     void AnalyseFichierCSV(string csvData)
     {
         StringReader reader = new StringReader(csvData);
         string line;
 
-        reader.ReadLine();
+        // Lire la première ligne pour obtenir le nom de la feuille
+        if ((line = reader.ReadLine()) != null)
+        {
+            string[] fields = line.Split(',');
 
+            if (fields.Length > 0)
+            {
+                string nomFeuille = fields[0].Trim(); // Récupérer le nom de la feuille
+                fichierText.text = nomFeuille; // Afficher le nom dans le UI
+            }
+        }
+
+        // Continuez à lire les lignes suivantes pour les questions
         while ((line = reader.ReadLine()) != null)
         {
             string[] fields = line.Split(',');
@@ -80,16 +107,16 @@ public class QuizManager : MonoBehaviour
             }
 
             QuizQuestion question = new QuizQuestion();
-            question.question = fields[0];
+            question.question = fields[1]; // Changez ceci pour prendre la question dans la bonne colonne
             question.reponses = new string[4];
 
             for (int i = 0; i < 4; i++)
             {
-                question.reponses[i] = fields[i + 1];
+                question.reponses[i] = fields[i + 2]; // Ajustez l'index pour les réponses
             }
 
             question.reponseCorrectQuestion = new List<int>();
-            string[] reponsesCorrect = fields[5].Split(';');
+            string[] reponsesCorrect = fields[6].Split(';');
             foreach (string laReponseCorrect in reponsesCorrect)
             {
                 if (int.TryParse(laReponseCorrect, out int indexReponse))
@@ -98,12 +125,13 @@ public class QuizManager : MonoBehaviour
                 }
             }
 
-            question.explication = fields[6];
+            question.explication = fields[7]; // Ajustez l'index pour l'explication
             quizQuestions.Add(question);
         }
 
         LoadQuestion();
     }
+
 
     void LoadQuestion()
     {
@@ -244,7 +272,8 @@ public class QuizManager : MonoBehaviour
 
     void EndQuiz()
     {
-        scoreText.text = scoreTextFormat + " " + totalScore + " / " + quizQuestions.Count;
         finQuizPanel.SetActive(true);
+        quitterButton.gameObject.SetActive(true);
+        scoreText.text = scoreTextFormat + " " + totalScore + "/" + quizQuestions.Count;
     }
 }
