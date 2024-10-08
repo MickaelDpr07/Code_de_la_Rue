@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // Ajoutez ceci pour gérer les scènes
+using UnityEngine.SceneManagement; // Ajoutez ceci pour gï¿½rer les scï¿½nes
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -21,20 +21,21 @@ public class QuizManager : MonoBehaviour
 
     public string csvURL = "https://docs.google.com/spreadsheets/d/1abcdEfGhijKlMnOpQrStuvWxYZ1234/export?format=csv";
 
-    [SerializeField] private Color colorFondSelection; // Couleur du fond du bouton quand sélectionné
-    [SerializeField] private Color colorFondNonSelection; // Couleur du fond du bouton quand non sélectionné
-    [SerializeField] private Color colorTXTSelection; // Couleur du texte du bouton quand sélectionné
-    [SerializeField] private Color colorTXTNonSelection; // Couleur du texte du bouton quand non sélectionné
-    [SerializeField] private Color couleurBonneReponse = Color.green; // Couleur pour une bonne réponse
-    [SerializeField] private Color couleurMauvaiseReponse = Color.red; // Couleur pour une mauvaise réponse
+    [SerializeField] private Color colorFondSelection; // Couleur du fond du bouton quand sï¿½lectionnï¿½
+    [SerializeField] private Color colorFondNonSelection; // Couleur du fond du bouton quand non sï¿½lectionnï¿½
+    [SerializeField] private Color colorTXTSelection; // Couleur du texte du bouton quand sï¿½lectionnï¿½
+    [SerializeField] private Color colorTXTNonSelection; // Couleur du texte du bouton quand non sï¿½lectionnï¿½
+    [SerializeField] private Color couleurBonneReponse = Color.green; // Couleur pour une bonne rï¿½ponse
+    [SerializeField] private Color couleurMauvaiseReponse = Color.red; // Couleur pour une mauvaise rï¿½ponse
     [SerializeField] private Color contourBlanc = Color.white;
     [SerializeField] private float largeurContour = 5f;
     [SerializeField] private float tempsAvantProchaine = 2f;
 
     [SerializeField] private string scoreTextFormat = "Votre score final est :";
 
-    // Champ pour la taille de sélection
-    [SerializeField] private int tailleSelection = 4; // Augmente la taille de la police lors de la sélection
+    // Champ pour la taille de sï¿½lection
+    [SerializeField] private int tailleSelection = 10; // Augmente la taille de la police lors de la sï¿½lection
+    [SerializeField] private int taillePolice = 40;
 
     private List<QuizQuestion> quizQuestions = new List<QuizQuestion>();
     private int indexQuestionActu = 0;
@@ -60,12 +61,12 @@ public class QuizManager : MonoBehaviour
 
         explicationText.gameObject.SetActive(false);
 
-        // Assurez-vous que le bouton quitter est désactivé tant que le quiz n'est pas terminé
+        // Assurez-vous que le bouton quitter est dï¿½sactivï¿½ tant que le quiz n'est pas terminï¿½
         quitterButton.gameObject.SetActive(false);
         quitterButton.onClick.AddListener(QuitterQuiz); // Ajouter le comportement au bouton Quitter
     }
 
-    // Méthode pour quitter et retourner à la scène principale
+    // Mï¿½thode pour quitter et retourner ï¿½ la scï¿½ne principale
     public void QuitterQuiz()
     {
         SceneManager.LoadScene("MainScene");
@@ -86,26 +87,26 @@ public class QuizManager : MonoBehaviour
         StringReader reader = new StringReader(csvData);
         string line;
 
-        // Lire la première ligne pour obtenir le nom de la feuille
+        // Lire la premiï¿½re ligne pour obtenir le nom de la feuille
         if ((line = reader.ReadLine()) != null)
         {
             string[] fields = line.Split(',');
 
             if (fields.Length > 0)
             {
-                string nomFeuille = fields[0].Trim(); // Récupérer le nom de la feuille
+                string nomFeuille = fields[0].Trim(); // Rï¿½cupï¿½rer le nom de la feuille
                 fichierText.text = nomFeuille; // Afficher le nom dans le UI
             }
         }
 
-        // Continuez à lire les lignes suivantes pour les questions
+        // Continuez ï¿½ lire les lignes suivantes pour les questions
         while ((line = reader.ReadLine()) != null)
         {
             string[] fields = line.Split(',');
 
             if (fields.Length < 7)
             {
-                Debug.LogWarning("Ligne mal formatée ou incomplète : " + line);
+                Debug.LogWarning("Ligne mal formatï¿½e ou incomplï¿½te : " + line);
                 continue;
             }
 
@@ -115,7 +116,7 @@ public class QuizManager : MonoBehaviour
 
             for (int i = 0; i < 4; i++)
             {
-                question.reponses[i] = fields[i + 2]; // Ajustez l'index pour les réponses
+                question.reponses[i] = fields[i + 2]; // Ajustez l'index pour les rï¿½ponses
             }
 
             question.reponseCorrectQuestion = new List<int>();
@@ -180,10 +181,10 @@ public class QuizManager : MonoBehaviour
     {
         if (selectionJoueur[index])
         {
-            boutonsReponse[index].GetComponent<Image>().color = colorFondSelection; // Utiliser la couleur de fond sélectionnée
+            boutonsReponse[index].GetComponent<Image>().color = colorFondSelection; // Utiliser la couleur de fond sï¿½lectionnï¿½e
             Text buttonText = boutonsReponse[index].GetComponentInChildren<Text>();
 
-            // Changer la couleur du texte lorsque le bouton est sélectionné
+            // Changer la couleur du texte lorsque le bouton est sï¿½lectionnï¿½
             buttonText.color = colorTXTSelection;
 
             // Augmenter la taille de la police
@@ -205,14 +206,14 @@ public class QuizManager : MonoBehaviour
 
     void ResetButtonAppearance(int index)
     {
-        boutonsReponse[index].GetComponent<Image>().color = colorFondNonSelection; // Utiliser la couleur de fond non sélectionnée
+        boutonsReponse[index].GetComponent<Image>().color = colorFondNonSelection; // Utiliser la couleur de fond non sï¿½lectionnï¿½e
         Text buttonText = boutonsReponse[index].GetComponentInChildren<Text>();
 
-        // Réinitialiser la couleur du texte
+        // Rï¿½initialiser la couleur du texte
         buttonText.color = colorTXTNonSelection;
 
-        // Réinitialiser la taille de la police à sa taille d'origine
-        buttonText.fontSize = 20; // Remplacez par la taille d'origine
+        // Rï¿½initialiser la taille de la police ï¿½ sa taille d'origine
+        buttonText.fontSize = taillePolice; // Remplacez par la taille d'origine
 
         Outline outline = boutonsReponse[index].GetComponent<Outline>();
         if (outline != null)
