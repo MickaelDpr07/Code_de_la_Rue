@@ -62,6 +62,7 @@ public class Deplacement : MonoBehaviour
                     if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, touch.position, canvas.worldCamera))
                     {
                         isDragging = true;
+                        InputManager.isDraggingObject = true;
                         // Conversion des coordonnées de l'écran en coordonnées locales
                         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.transform as RectTransform, touch.position, canvas.worldCamera, out originalLocalPointerPosition);
                         originalPanelLocalPosition = rectTransform.localPosition;
@@ -95,6 +96,7 @@ public class Deplacement : MonoBehaviour
                     if (isDragging)
                     {
                         isDragging = false;
+                        InputManager.isDraggingObject = false;
                         Debug.Log("Drag ended");
                     }
                     break;
@@ -124,6 +126,8 @@ public class Deplacement : MonoBehaviour
                         CanDrag = false;
                         Contexte.SetActive(false);
                         completed = true;
+                        isDragging = false;
+                        InputManager.isDraggingObject = false;
                         OpenPopUp();
                     }
                     else

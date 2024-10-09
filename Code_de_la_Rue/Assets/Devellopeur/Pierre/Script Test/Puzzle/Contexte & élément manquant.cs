@@ -98,6 +98,7 @@ public class Contexte : MonoBehaviour
     public void SelectButton(Button button)
     {
         selectedButton = button; // Enregistrer le bouton sélectionné
+
     }
 
     // Méthode pour valider la réponse

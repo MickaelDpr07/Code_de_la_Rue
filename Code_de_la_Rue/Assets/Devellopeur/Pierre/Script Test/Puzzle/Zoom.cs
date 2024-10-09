@@ -16,22 +16,23 @@ public class ZoomInZoomOut : MonoBehaviour
     float zoomModifierSpeed = 0.1f;
 
     [SerializeField]
-    float zoomMax = 2f, zoomMin = 10f; // Inversé : zoomMax est la plus petite taille de zoom, zoomMin est la plus grande
+    float zoomMax = 2f, zoomMin = 10f;
 
     [SerializeField]
-    RectTransform canvasRect; // Le RectTransform du Canvas
+    RectTransform canvasRect;
 
-    // Use this for initialization
+    Vector3 lastSingleTouchPos;
+
     void Start()
     {
         mainCamera = GetComponent<Camera>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount == 2)
+        if (Input.touchCount == 2 && InputManager.isDraggingObject == false) // Ignorer si un objet est déplacé
         {
+            // Zoom à deux doigts
             Touch firstTouch = Input.GetTouch(0);
             Touch secondTouch = Input.GetTouch(1);
 
@@ -64,34 +65,46 @@ public class ZoomInZoomOut : MonoBehaviour
 
             ApplyCameraBounds();
         }
+        else if (Input.touchCount == 1 && InputManager.isDraggingObject == false) // Ignorer si un objet est déplacé
+        {
+            // Déplacement avec un doigt
+            Touch touch = Input.GetTouch(0);
 
+            if (touch.phase == TouchPhase.Began)
+            {
+                lastSingleTouchPos = mainCamera.ScreenToWorldPoint(touch.position);
+            }
+            else if (touch.phase == TouchPhase.Moved)
+            {
+                Vector3 currentTouchPos = mainCamera.ScreenToWorldPoint(touch.position);
+                Vector3 difference = lastSingleTouchPos - currentTouchPos;
+
+                mainCamera.transform.position += difference;
+                ApplyCameraBounds();
+
+                lastSingleTouchPos = mainCamera.ScreenToWorldPoint(touch.position);
+            }
+        }
     }
 
-    // Limite le mouvement et le zoom de la caméra pour rester dans les limites du Canvas
     void ApplyCameraBounds()
     {
-        // Taille du canvas
         Vector3 canvasMin = canvasRect.TransformPoint(canvasRect.rect.min);
         Vector3 canvasMax = canvasRect.TransformPoint(canvasRect.rect.max);
 
-        // Dimensions visibles de la caméra
         float cameraHeight = mainCamera.orthographicSize * 2f;
         float cameraWidth = cameraHeight * mainCamera.aspect;
 
-        // Position de la caméra actuelle
         Vector3 camPos = mainCamera.transform.position;
 
-        // Appliquer les limites pour que la caméra ne sorte pas des bords du Canvas
         float minX = canvasMin.x + cameraWidth / 2f;
         float maxX = canvasMax.x - cameraWidth / 2f;
         float minY = canvasMin.y + cameraHeight / 2f;
         float maxY = canvasMax.y - cameraHeight / 2f;
 
-        // Clamping de la position de la caméra
         camPos.x = Mathf.Clamp(camPos.x, minX, maxX);
         camPos.y = Mathf.Clamp(camPos.y, minY, maxY);
 
-        // Appliquer la position corrigée à la caméra
         mainCamera.transform.position = camPos;
     }
 }
