@@ -11,6 +11,7 @@ public class QuizManager : MonoBehaviour
 {
     public Text questionText;
     public Text explicationText;
+    public GameObject explicationFond;
     public Button[] boutonsReponse;
     public Button validerButton;
     public Text progressionText;
@@ -60,6 +61,7 @@ public class QuizManager : MonoBehaviour
         validerButton.onClick.AddListener(CalculDuScore);
 
         explicationText.gameObject.SetActive(false);
+        explicationFond.SetActive(false);
 
         // Assurez-vous que le bouton quitter est d�sactiv� tant que le quiz n'est pas termin�
         quitterButton.gameObject.SetActive(false);
@@ -148,6 +150,7 @@ public class QuizManager : MonoBehaviour
         questionText.text = questionActuel.question;
         selectionJoueur = new bool[questionActuel.reponses.Length];
         explicationText.gameObject.SetActive(false);
+        explicationFond.SetActive(false);
 
         for (int i = 0; i < boutonsReponse.Length; i++)
         {
@@ -255,6 +258,7 @@ public class QuizManager : MonoBehaviour
         ColorerBoutonsSelectionnes();
         explicationText.text = explication;
         explicationText.gameObject.SetActive(true);
+        explicationFond.SetActive(true);
         yield return new WaitForSeconds(tempsAvantProchaine);
         indexQuestionActu++;
         LoadQuestion();
