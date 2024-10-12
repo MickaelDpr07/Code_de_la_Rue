@@ -20,6 +20,8 @@ public class Lexique : MonoBehaviour
     public TextMeshProUGUI titre;
     public TextMeshProUGUI contenu;
 
+    public Animator Animation;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,19 +89,63 @@ public class Lexique : MonoBehaviour
 
     public void Retour()
     {
-        PanelDescription.SetActive(false);
+        if (Animation != null)
+        {
+            // Assure que l'animation existe avant de la jouer
+            if (Animation.HasState(0, Animator.StringToHash("LexiquePopUp")))
+            {
+                // Joue l'animation à partir de la fin (1.0f) et la rejoue à l'envers manuellement
+                StartCoroutine(PlayAnimationBackward("LexiquePopUp"));
+            }
+            else
+            {
+                Debug.LogError("L'état 'Panel_Description' n'a pas été trouvé dans l'Animator.");
+            }
+        }
+        else
+        {
+            Debug.LogError("L'Animator n'est pas assigné.");
+        }
     }
+
+    private IEnumerator PlayAnimationBackward(string animationName)
+    {
+        AnimatorStateInfo stateInfo = Animation.GetCurrentAnimatorStateInfo(0);
+        float playbackTime = 1.0f; // Commence à la fin de l'animation
+
+        // Joue l'animation normalement depuis la fin
+        Animation.Play(animationName, 0, playbackTime);
+
+        while (playbackTime > 0f)
+        {
+            // Diminue progressivement le temps de lecture de l'animation
+            playbackTime -= Time.deltaTime / stateInfo.length;
+
+            // Applique le temps de lecture mis à jour
+            Animation.Play(animationName, 0, playbackTime);
+
+            yield return null; // Attends la frame suivante
+        }
+
+        // Remet l'animation à la première frame (position 0)
+        PanelDescription.SetActive(false);
+        Animation.Play(animationName, 0, 0.0f);
+    }
+
+
 
     public void QuitterLexique()
     {
         PanelButton.SetActive(true);
         PanelLexique.SetActive(false);
-        
+
     }
 
     public void OuvrirCategorie()
     {
         PanelCategorie.SetActive(true);
+        Animation.Play("Panel_Description",0,0f);
+        Animation.speed = 1;
         PanelTheme.SetActive(false);
     }
 }
