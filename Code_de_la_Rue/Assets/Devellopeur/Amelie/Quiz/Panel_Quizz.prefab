@@ -588,9 +588,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Titre Partie
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ead028b1536052e48b6c9a03dfa0ea06, type: 2}
-  m_sharedMaterial: {fileID: 4588646082399409121, guid: ead028b1536052e48b6c9a03dfa0ea06,
-    type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -990,8 +989,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0.26666668, g: 0.69411767, b: 0.7647059, a: 1}
-  m_EffectDistance: {x: 2, y: 2}
-  m_UseGraphicAlpha: 1
+  m_EffectDistance: {x: 3, y: 3}
+  m_UseGraphicAlpha: 0
 --- !u!1 &7093365774217112893
 GameObject:
   m_ObjectHideFlags: 0
