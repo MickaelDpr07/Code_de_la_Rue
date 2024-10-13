@@ -144,8 +144,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Objets
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 65b846a21d2fb124c9853d03ff1a5313, type: 2}
-  m_sharedMaterial: {fileID: 4641865255443542708, guid: 65b846a21d2fb124c9853d03ff1a5313,
+  m_fontAsset: {fileID: 11400000, guid: 077819e30c33c0546bbf820c067e335e, type: 2}
+  m_sharedMaterial: {fileID: -8226102008836001359, guid: 077819e30c33c0546bbf820c067e335e,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -170,13 +170,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 70
+  m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 32
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1372,7 +1372,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -10, y: -10.000001}
+  m_SizeDelta: {x: -40, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8730926748582878390
 CanvasRenderer:
@@ -1404,8 +1404,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Valider
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 65b846a21d2fb124c9853d03ff1a5313, type: 2}
-  m_sharedMaterial: {fileID: 4641865255443542708, guid: 65b846a21d2fb124c9853d03ff1a5313,
+  m_fontAsset: {fileID: 11400000, guid: 156f53d50e6e1604d905a28b4ca89412, type: 2}
+  m_sharedMaterial: {fileID: 8312582764701515536, guid: 156f53d50e6e1604d905a28b4ca89412,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1430,13 +1430,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 40
   m_fontSizeMax: 45
-  m_fontStyle: 32
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1674,7 +1674,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: -20}
-  m_SizeDelta: {x: 250, y: 100}
+  m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &3532980841969555154
 CanvasRenderer:
@@ -2026,12 +2026,12 @@ PrefabInstance:
     - target: {fileID: 5001090860146927496, guid: 76b9e6556f6c47d498876c42556dc2bc,
         type: 3}
       propertyPath: m_text
-      value: "pas de t\xE9l\xE9phonne et pas de main"
+      value: "Pas de t\xE9l\xE9phonne et pas de main"
       objectReference: {fileID: 0}
     - target: {fileID: 5001090860146927496, guid: 76b9e6556f6c47d498876c42556dc2bc,
         type: 3}
       propertyPath: m_fontSize
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5001090860146927496, guid: 76b9e6556f6c47d498876c42556dc2bc,
         type: 3}
@@ -2041,7 +2041,7 @@ PrefabInstance:
     - target: {fileID: 5001090860146927496, guid: 76b9e6556f6c47d498876c42556dc2bc,
         type: 3}
       propertyPath: m_fontSizeBase
-      value: 30
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5001090860146927496, guid: 76b9e6556f6c47d498876c42556dc2bc,
         type: 3}

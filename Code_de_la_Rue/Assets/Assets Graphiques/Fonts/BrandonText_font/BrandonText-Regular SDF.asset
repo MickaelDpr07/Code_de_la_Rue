@@ -60,9 +60,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: BrandonText-Regular SDF
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 776596609
   material: {fileID: 5664911255562455117}
-  materialHashCode: 0
+  materialHashCode: -1682060671
   m_Version: 1.1.0
   m_SourceFontFileGUID: 317bc0068c4ff7047bac5195677a8a51
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 317bc0068c4ff7047bac5195677a8a51,
@@ -5469,14 +5469,14 @@ MonoBehaviour:
   m_FontWeightTable:
   - regularTypeface: {fileID: 0}
     italicTypeface: {fileID: 0}
-  - regularTypeface: {fileID: 0}
+  - regularTypeface: {fileID: 11400000}
     italicTypeface: {fileID: 0}
   - regularTypeface: {fileID: 0}
     italicTypeface: {fileID: 0}
   - regularTypeface: {fileID: 0}
     italicTypeface: {fileID: 0}
   - regularTypeface: {fileID: 0}
-    italicTypeface: {fileID: 0}
+    italicTypeface: {fileID: 11400000, guid: f86a2d8588a7a8741882bf2ef7a2149b, type: 2}
   - regularTypeface: {fileID: 0}
     italicTypeface: {fileID: 0}
   - regularTypeface: {fileID: 0}
@@ -5489,7 +5489,7 @@ MonoBehaviour:
     italicTypeface: {fileID: 0}
   fontWeights: []
   normalStyle: 0
-  normalSpacingOffset: 0
+  normalSpacingOffset: -10
   boldStyle: 0.75
   boldSpacing: 7
   italicStyle: 35
@@ -5567,9 +5567,9 @@ Material:
     - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 1
-    - _ScaleRatioB: 1
-    - _ScaleRatioC: 1
+    - _ScaleRatioA: 0.8333333
+    - _ScaleRatioB: 0.6770833
+    - _ScaleRatioC: 0.6770833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
