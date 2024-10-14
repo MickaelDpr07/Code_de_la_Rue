@@ -750,6 +750,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7558227469158954431, guid: 19a2e4be2edd69e4796099aacf553ee3,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558227469158954431, guid: 19a2e4be2edd69e4796099aacf553ee3,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 65
+      objectReference: {fileID: 0}
     - target: {fileID: 7598959126444778698, guid: 19a2e4be2edd69e4796099aacf553ee3,
         type: 3}
       propertyPath: m_Pivot.x
