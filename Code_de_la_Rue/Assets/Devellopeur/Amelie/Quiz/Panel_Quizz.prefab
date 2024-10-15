@@ -686,7 +686,9 @@ MonoBehaviour:
   contourBlanc: {r: 1, g: 1, b: 1, a: 1}
   largeurContour: 5
   scoreTextFormat: 'Votre score final est :'
-  tailleSelection: 2
+  tailleSelection: 3
+  totalScore: 0
+  taillePoliceInitiale: 40
 --- !u!1 &5989386617922761572
 GameObject:
   m_ObjectHideFlags: 0

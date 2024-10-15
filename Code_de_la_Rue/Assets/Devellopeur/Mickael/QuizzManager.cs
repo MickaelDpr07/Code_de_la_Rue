@@ -33,7 +33,7 @@ public class QuizManager : MonoBehaviour
 
     [SerializeField] private string scoreTextFormat = "Votre score final est :";
 
-    [SerializeField] private int tailleSelection = 4;
+    [SerializeField] private int tailleSelection = 5; // Valeur de +5 lorsque sélectionné
 
     private List<QuizQuestion> quizQuestions = new List<QuizQuestion>();
     private int indexQuestionActu = 0;
@@ -41,6 +41,8 @@ public class QuizManager : MonoBehaviour
     public int totalScore = 0;
     private QuizQuestion questionActuel;
     private bool questionValidee = false;
+
+    public int taillePoliceInitiale = 40; // Taille de police initiale à stocker
 
     [System.Serializable]
     public class QuizQuestion
@@ -63,7 +65,6 @@ public class QuizManager : MonoBehaviour
         quitterButton.gameObject.SetActive(false);
         quitterButton.onClick.AddListener(QuitterQuiz);
     }
-
     public void QuitterQuiz()
     {
         SceneManager.LoadScene("MainScene");
@@ -176,13 +177,13 @@ public class QuizManager : MonoBehaviour
 
     void UpdateButtonAppearance(int index)
     {
+        Text buttonText = boutonsReponse[index].GetComponentInChildren<Text>();
+
         if (selectionJoueur[index])
         {
             boutonsReponse[index].GetComponent<Image>().color = colorFondSelection;
-            Text buttonText = boutonsReponse[index].GetComponentInChildren<Text>();
-
             buttonText.color = colorTXTSelection;
-            buttonText.fontSize += tailleSelection;
+            buttonText.fontSize = taillePoliceInitiale + tailleSelection; // Augmente de +5 lors de la sélection
 
             Outline outline = boutonsReponse[index].GetComponent<Outline>();
             if (outline == null)
@@ -204,7 +205,7 @@ public class QuizManager : MonoBehaviour
         Text buttonText = boutonsReponse[index].GetComponentInChildren<Text>();
 
         buttonText.color = colorTXTNonSelection;
-        buttonText.fontSize = 20;
+        buttonText.fontSize = taillePoliceInitiale; // Retour à la taille initiale lorsque non sélectionné
 
         Outline outline = boutonsReponse[index].GetComponent<Outline>();
         if (outline != null)
@@ -223,7 +224,7 @@ public class QuizManager : MonoBehaviour
         {
             indexQuestionActu++;
             LoadQuestion();
-            validerButton.GetComponentInChildren<Text>().text = "VALIDER";
+            validerButton.GetComponentInChildren<Text>().text = "Valider";
         }
     }
 
