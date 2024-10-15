@@ -664,7 +664,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questionText: {fileID: 6933753480652404696}
   explicationText: {fileID: 0}
-  explicationFond: {fileID: 5989386617922761572}
+  fondExplication: {fileID: 5989386617922761572}
   boutonsReponse:
   - {fileID: 6980182005073949897}
   - {fileID: 7265924879869832416}
@@ -685,10 +685,8 @@ MonoBehaviour:
   couleurMauvaiseReponse: {r: 1, g: 0.33776176, b: 0, a: 1}
   contourBlanc: {r: 1, g: 1, b: 1, a: 1}
   largeurContour: 5
-  tempsAvantProchaine: 2
   scoreTextFormat: 'Votre score final est :'
   tailleSelection: 2
-  taillePolice: 40
 --- !u!1 &5989386617922761572
 GameObject:
   m_ObjectHideFlags: 0
