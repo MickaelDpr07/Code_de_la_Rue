@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: -30, y: 500}
+  m_SizeDelta: {x: -40, y: 500}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2547646774736318433
 CanvasRenderer:
@@ -65,10 +65,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Vehicules
+  m_text: "V\xE9hicules"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 743d51ecbffdef346acd0eda996aa08c, type: 2}
-  m_sharedMaterial: {fileID: 685829769678212619, guid: 743d51ecbffdef346acd0eda996aa08c,
+  m_fontAsset: {fileID: 11400000, guid: d7e0a075475c2334ea9c5943f3d60ef5, type: 2}
+  m_sharedMaterial: {fileID: 5664911255562455117, guid: d7e0a075475c2334ea9c5943f3d60ef5,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -93,13 +93,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 89.55
-  m_fontSizeBase: 90
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 100
-  m_fontStyle: 33
+  m_fontStyle: 17
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -170,7 +170,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: -30, y: 500}
+  m_SizeDelta: {x: -40, y: 500}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &5295347659997790059
 CanvasRenderer:
@@ -202,8 +202,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\xC0 debloquer"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 743d51ecbffdef346acd0eda996aa08c, type: 2}
-  m_sharedMaterial: {fileID: 685829769678212619, guid: 743d51ecbffdef346acd0eda996aa08c,
+  m_fontAsset: {fileID: 11400000, guid: d7e0a075475c2334ea9c5943f3d60ef5, type: 2}
+  m_sharedMaterial: {fileID: 5664911255562455117, guid: d7e0a075475c2334ea9c5943f3d60ef5,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -228,13 +228,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.45
-  m_fontSizeBase: 90
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 100
-  m_fontStyle: 33
+  m_fontStyle: 17
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -427,7 +427,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -0.0000038146973, y: 0.000030517578}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4951013524673166728
 MonoBehaviour:

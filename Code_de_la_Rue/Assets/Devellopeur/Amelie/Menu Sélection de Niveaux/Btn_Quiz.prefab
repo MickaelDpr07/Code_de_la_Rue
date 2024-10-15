@@ -520,8 +520,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3063187716691662296}
-  - {fileID: 2113907260417502952}
   - {fileID: 6203390011131570413}
+  - {fileID: 2113907260417502952}
   - {fileID: 7366047414652808313}
   - {fileID: 1018210619305391472}
   m_Father: {fileID: 7818228308622838271}
@@ -763,7 +763,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -55, y: 40}
+  m_AnchoredPosition: {x: -55, y: 50}
   m_SizeDelta: {x: -210, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &419934952154886131
@@ -796,8 +796,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score : 0/0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 1ea257ade08f02c4c9a40bef3344a9b4, type: 2}
-  m_sharedMaterial: {fileID: -8810176734146647021, guid: 1ea257ade08f02c4c9a40bef3344a9b4,
+  m_fontAsset: {fileID: 11400000, guid: d7e0a075475c2334ea9c5943f3d60ef5, type: 2}
+  m_sharedMaterial: {fileID: 5664911255562455117, guid: d7e0a075475c2334ea9c5943f3d60ef5,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -822,10 +822,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 30
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 40
   m_fontStyle: 1
@@ -898,8 +898,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -18, y: -20}
-  m_SizeDelta: {x: -48, y: 60}
+  m_AnchoredPosition: {x: -100, y: -20}
+  m_SizeDelta: {x: -130, y: 60}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &2319761116680188643
 CanvasRenderer:
@@ -929,10 +929,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "N\xB0. Titre du Niveau Quizz"
+  m_text: "N\xB0. Titre du Niveau Quiz"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a86c1fd7c8ef14d439c97e69b00aa287, type: 2}
-  m_sharedMaterial: {fileID: -1098288721772673194, guid: a86c1fd7c8ef14d439c97e69b00aa287,
+  m_fontAsset: {fileID: 11400000, guid: 077819e30c33c0546bbf820c067e335e, type: 2}
+  m_sharedMaterial: {fileID: -8226102008836001359, guid: 077819e30c33c0546bbf820c067e335e,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -957,15 +957,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.15
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 16
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 8192
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0

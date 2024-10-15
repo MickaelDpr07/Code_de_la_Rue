@@ -13,7 +13,6 @@ public class Lexique : MonoBehaviour
     public GameObject PanelCategorie;
     public GameObject PanelTheme;
 
-    
 
     // A Afficher
     public TextMeshProUGUI Categorie;
@@ -147,5 +146,11 @@ public class Lexique : MonoBehaviour
         Animation.Play("Panel_Description",0,0f);
         Animation.speed = 1;
         PanelTheme.SetActive(false);
+    }
+
+    public void QuitterCategorie() // Avec le boutton en croix
+    {
+        PanelCategorie.SetActive(false);
+        PanelTheme.SetActive(true);
     }
 }

@@ -198,10 +198,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quitter
+  m_text: Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 65b846a21d2fb124c9853d03ff1a5313, type: 2}
-  m_sharedMaterial: {fileID: 4641865255443542708, guid: 65b846a21d2fb124c9853d03ff1a5313,
+  m_fontAsset: {fileID: 11400000, guid: 156f53d50e6e1604d905a28b4ca89412, type: 2}
+  m_sharedMaterial: {fileID: 8312582764701515536, guid: 156f53d50e6e1604d905a28b4ca89412,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -226,13 +226,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
-  m_fontSizeBase: 24
+  m_fontSize: 80
+  m_fontSizeBase: 80
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 33
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -411,10 +411,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Serie Terminee !
+  m_text: "S\xE9rie Termin\xE9e !"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: ead028b1536052e48b6c9a03dfa0ea06, type: 2}
-  m_sharedMaterial: {fileID: 4588646082399409121, guid: ead028b1536052e48b6c9a03dfa0ea06,
+  m_fontAsset: {fileID: 11400000, guid: 8aec1d638f33ca44799fb3fe60f3d0d8, type: 2}
+  m_sharedMaterial: {fileID: 8847370662308541946, guid: 8aec1d638f33ca44799fb3fe60f3d0d8,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -439,13 +439,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 98.15
-  m_fontSizeBase: 36
+  m_fontSize: 120
+  m_fontSizeBase: 120
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 100
-  m_fontStyle: 32
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -516,7 +516,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -180, y: -20}
+  m_SizeDelta: {x: -180, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8916111363228641874
 CanvasRenderer:
@@ -547,9 +547,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 12800000, guid: d2769c86fe5626c4ea04ea26c20c4663, type: 3}
+    m_Font: {fileID: 12800000, guid: dcf4f40e60c576646b9d6362a27a1e7a, type: 3}
     m_FontSize: 70
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 148

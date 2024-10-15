@@ -122,6 +122,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &462800328 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5989386617922761572, guid: 19a2e4be2edd69e4796099aacf553ee3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1111779198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &472720367
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +665,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5989386617922761572, guid: 19a2e4be2edd69e4796099aacf553ee3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6772229063226577250, guid: 19a2e4be2edd69e4796099aacf553ee3,
         type: 3}
       propertyPath: csvURL
@@ -700,6 +711,11 @@ PrefabInstance:
       propertyPath: explicationText
       value: 
       objectReference: {fileID: 1111779199}
+    - target: {fileID: 6772229063226577250, guid: 19a2e4be2edd69e4796099aacf553ee3,
+        type: 3}
+      propertyPath: fondExplication
+      value: 
+      objectReference: {fileID: 462800328}
     - target: {fileID: 6772229063226577250, guid: 19a2e4be2edd69e4796099aacf553ee3,
         type: 3}
       propertyPath: scoreTextFormat
@@ -744,6 +760,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558227469158954431, guid: 19a2e4be2edd69e4796099aacf553ee3,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 7558227469158954431, guid: 19a2e4be2edd69e4796099aacf553ee3,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 7598959126444778698, guid: 19a2e4be2edd69e4796099aacf553ee3,
         type: 3}
