@@ -5,28 +5,28 @@ using UnityEngine.UI;
 
 public class Swipe_menu : MonoBehaviour
 {
-    // Référence à l'objet de la barre de défilement
+    // Rï¿½fï¿½rence ï¿½ l'objet de la barre de dï¿½filement
     public GameObject scrollbar;
 
-    // Position actuelle du défilement
-    private float scroll_pos = 0;
+    // Position actuelle du dï¿½filement
+    private float scroll_pos = -100;
 
-    // Tableau contenant les positions normalisées des éléments dans le défilement
+    // Tableau contenant les positions normalisï¿½es des ï¿½lï¿½ments dans le dï¿½filement
     private float[] pos;
 
-    // Sensibilité du défilement
-    public float sensitivity = 0.5f; // Modifier la sensibilité
+    // Sensibilitï¿½ du dï¿½filement
+    public float sensitivity = 0.5f; // Modifier la sensibilitï¿½
 
-    // État de défilement
+    // ï¿½tat de dï¿½filement
     private bool isScrolling = false;
 
-    // Start est appelé avant la première frame
+    // Start est appelï¿½ avant la premiï¿½re frame
     void Start()
     {
         InitializePositions();
     }
 
-    // Initialiser les positions des éléments
+    // Initialiser les positions des ï¿½lï¿½ments
     private void InitializePositions()
     {
         int childCount = transform.childCount;
@@ -39,10 +39,10 @@ public class Swipe_menu : MonoBehaviour
         }
     }
 
-    // Update est appelé une fois par frame
+    // Update est appelï¿½ une fois par frame
     void Update()
     {
-        // Récupérer la position actuelle de la barre de défilement une seule fois
+        // Rï¿½cupï¿½rer la position actuelle de la barre de dï¿½filement une seule fois
         scroll_pos = scrollbar.GetComponent<Scrollbar>().value;
 
         // Ajustement automatique vers la position la plus proche
@@ -50,50 +50,50 @@ public class Swipe_menu : MonoBehaviour
         {
             if (IsCloseEnough(scroll_pos, pos[i]))
             {
-                // Interpolation linéaire pour ajuster la valeur de la barre de défilement vers la position cible
-                if (!isScrolling) // Ne fait pas l'interpolation si déjà en train de scroller
+                // Interpolation linï¿½aire pour ajuster la valeur de la barre de dï¿½filement vers la position cible
+                if (!isScrolling) // Ne fait pas l'interpolation si dï¿½jï¿½ en train de scroller
                 {
                     scrollbar.GetComponent<Scrollbar>().value = Mathf.Lerp(scrollbar.GetComponent<Scrollbar>().value, pos[i], 0.1f);
                 }
 
-                // Mise à jour de l'échelle des éléments
+                // Mise ï¿½ jour de l'ï¿½chelle des ï¿½lï¿½ments
                 UpdateScale(i);
-                break; // Sortir de la boucle après avoir trouvé la position la plus proche
+                break; // Sortir de la boucle aprï¿½s avoir trouvï¿½ la position la plus proche
             }
         }
 
-        // Gérer le défilement
+        // Gï¿½rer le dï¿½filement
         if (Input.GetMouseButton(0))
         {
-            isScrolling = true; // Indique que l'utilisateur défile
+            isScrolling = true; // Indique que l'utilisateur dï¿½file
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            isScrolling = false; // Réinitialise l'état lorsque le doigt est relâché
+            isScrolling = false; // Rï¿½initialise l'ï¿½tat lorsque le doigt est relï¿½chï¿½
         }
     }
 
-    // Vérifie si la position actuelle est proche d'une position cible
+    // Vï¿½rifie si la position actuelle est proche d'une position cible
     private bool IsCloseEnough(float currentPosition, float targetPosition)
     {
         float distance = 1f / (pos.Length - 1f) * sensitivity / 2.5f;
         return currentPosition < targetPosition + distance && currentPosition > targetPosition - distance;
     }
 
-    // Mise à jour de l'échelle des éléments en fonction de leur proximité
+    // Mise ï¿½ jour de l'ï¿½chelle des ï¿½lï¿½ments en fonction de leur proximitï¿½
     private void UpdateScale(int currentIndex)
     {
         for (int i = 0; i < pos.Length; i++)
         {
-            Transform child = transform.GetChild(i); // Récupérer le transform une seule fois
+            Transform child = transform.GetChild(i); // Rï¿½cupï¿½rer le transform une seule fois
             if (i == currentIndex)
             {
-                // Met à l'échelle l'élément actuel pour le mettre en évidence
+                // Met ï¿½ l'ï¿½chelle l'ï¿½lï¿½ment actuel pour le mettre en ï¿½vidence
                 child.localScale = Vector2.Lerp(child.localScale, new Vector2(1f, 1f), 0.1f);
             }
             else
             {
-                // Réduit l'échelle des autres éléments
+                // Rï¿½duit l'ï¿½chelle des autres ï¿½lï¿½ments
                 child.localScale = Vector2.Lerp(child.localScale, new Vector2(0.8f, 0.8f), 0.1f);
             }
         }
