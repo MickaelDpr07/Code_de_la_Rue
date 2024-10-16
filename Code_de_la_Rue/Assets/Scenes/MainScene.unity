@@ -2561,6 +2561,21 @@ PrefabInstance:
       propertyPath: PanelButton
       value: 
       objectReference: {fileID: 761450638}
+    - target: {fileID: 7967570431856516292, guid: b4e764cf368b8a645998d02e0259470e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.7647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967570431856516292, guid: b4e764cf368b8a645998d02e0259470e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.69411767
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967570431856516292, guid: b4e764cf368b8a645998d02e0259470e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.26666668
+      objectReference: {fileID: 0}
     - target: {fileID: 8069270865010921628, guid: b4e764cf368b8a645998d02e0259470e,
         type: 3}
       propertyPath: m_AnchorMax.y
