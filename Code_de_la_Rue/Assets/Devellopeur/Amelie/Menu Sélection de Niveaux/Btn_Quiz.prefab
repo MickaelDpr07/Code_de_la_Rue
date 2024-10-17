@@ -503,7 +503,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcecc269d083f35459f7f01dbe8be629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serieText: {fileID: 862612789662465809}
+  TXTNomSerie: {fileID: 862612789662465809}
+  TXTScore: {fileID: 2186039407819278542}
   csvURL: https://docs.google.com/spreadsheets/d/e/2PACX-1vRXC1FAz67tRln10Pt24N0QEp2_t6uQM1lSLgMuEqZ5peXsrMayXg4JpKKdwyCMvd4QU__sm7EkIQBf/pub?gid=0&single=true&output=csv
 --- !u!1 &3710694698802469525
 GameObject:
