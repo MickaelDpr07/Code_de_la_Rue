@@ -1525,8 +1525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoomModifierSpeed: 0.1
-  zoomMax: 55
-  zoomMin: 120
+  zoomMax: 37
+  zoomMin: 65
   canvasRect: {fileID: 1231120422}
 --- !u!81 &1050262758
 AudioListener:
@@ -1571,7 +1571,7 @@ Camera:
   far clip plane: 1000
   field of view: 26.991467
   orthographic: 1
-  orthographic size: 61.1346
+  orthographic size: 65
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

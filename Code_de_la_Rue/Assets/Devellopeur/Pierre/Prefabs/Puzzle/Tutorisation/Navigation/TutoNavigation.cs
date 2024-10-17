@@ -96,6 +96,12 @@ public class TutoNavigation : MonoBehaviour
                 
                 break;
 
+            case 9:
+                //  Résolution de l'étape 9
+                AffichagePanelSuivant();
+
+                break;
+
             default:
                 // Actions pour les étapes supplémentaires (non définies)
                 SceneManager.LoadScene("MainScene");
@@ -105,7 +111,7 @@ public class TutoNavigation : MonoBehaviour
 
     public void SkipTuto()
     {
-        EtapeTuto = 9;
+        EtapeTuto = 10;
         CheckEtape();
     }
 
