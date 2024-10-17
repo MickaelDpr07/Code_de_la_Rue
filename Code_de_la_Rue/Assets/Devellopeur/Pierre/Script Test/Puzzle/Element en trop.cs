@@ -44,8 +44,8 @@ public class Elemententrop : MonoBehaviour
         Debug.Log("oui");
         if (PopUp != null)
         {
-           // bool isActive = PopUp.activeSelf;
-           // PopUp.SetActive(!isActive);
+           bool isActive = PopUp.activeSelf;
+           PopUp.SetActive(!isActive);
 
             Transform txtContexteTransform = PopUp.transform.Find("Txt_contexte");
 
@@ -166,6 +166,7 @@ public class Elemententrop : MonoBehaviour
         if (reponseCorrecte)
         {
             txt_Contexte.text = texte2;
+            PopUp.SetActive(false);
             GameManager.NbrPuzzleRéussi++;
             GameManager.CheckPuzzle();
             //On detruit les elements en trop
