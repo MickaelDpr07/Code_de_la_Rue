@@ -24,8 +24,12 @@ public class Swipe_menu : MonoBehaviour
     void Start()
     {
         InitializePositions();
+        // Positionner le scroll sur le premier élément
+        scrollbar.GetComponent<Scrollbar>().value = pos[0];
+        scroll_pos = pos[0];
+        UpdateScale(0); // Met à jour l'échelle du premier élément
     }
-
+ 
     // Initialiser les positions des �l�ments
     private void InitializePositions()
     {
