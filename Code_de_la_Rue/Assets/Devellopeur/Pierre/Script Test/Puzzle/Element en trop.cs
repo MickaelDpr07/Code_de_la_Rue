@@ -44,8 +44,8 @@ public class Elemententrop : MonoBehaviour
         Debug.Log("oui");
         if (PopUp != null)
         {
-            bool isActive = PopUp.activeSelf;
-            PopUp.SetActive(!isActive);
+           // bool isActive = PopUp.activeSelf;
+           // PopUp.SetActive(!isActive);
 
             Transform txtContexteTransform = PopUp.transform.Find("Txt_contexte");
 

@@ -57,7 +57,7 @@ public class Contexte : MonoBehaviour
 
                     if (txtContexte != null)
                     {
-                        if(!completed)
+                        if (!completed)
                         {
                             txtContexte.text = texte1; // Assigner texte1 au TextMeshPro
                         }
@@ -65,7 +65,7 @@ public class Contexte : MonoBehaviour
                         {
                             txtContexte.text = texte2; // Assigner texte1 au TextMeshPro
                         }
-                        
+
                     }
                     else
                     {
@@ -106,22 +106,32 @@ public class Contexte : MonoBehaviour
     {
         if (selectedButton == BTN_Réponse)
         {
-            Debug.Log("Réponse correcte !" + selectedButton);
-            GameManager.NbrPuzzleRéussi++;
-            GameManager.CheckPuzzle();
-            Reponse.SetActive(false);
-            PopUp.SetActive(true);
-            txt_Contexte.text = texte2;
-            Résolution.SetActive(false);
-            completed = true;
-            img_afficher.sprite = Img_Résolution.sprite;
-        }
-        else
-        {
-            Debug.Log("Réponse incorrecte !");
-            Reponse.SetActive(false);
-            PopUp.SetActive(true);
-            txt_Contexte.text = "Je ne suis pas sur que ça m'aide dans cette situation..";
+            // Cherche l'enfant avec le nom "Txt_contexte"
+            Transform txtContexteTransform = PopUp.transform.Find("Txt_contexte");
+
+            // Vérifie si l'élément existe et applique le texte
+            if (txtContexteTransform != null)
+            {
+                // Récupérer le composant TMP_Text et appliquer le texte
+                TMP_Text txtContexte = txtContexteTransform.GetComponent<TMP_Text>();
+                Debug.Log("Réponse correcte !" + selectedButton);
+
+                GameManager.NbrPuzzleRéussi++;
+                GameManager.CheckPuzzle();
+                Reponse.SetActive(false);
+                PopUp.SetActive(true);
+                txtContexte.text = texte2;
+                Résolution.SetActive(false);
+                completed = true;
+                img_afficher.sprite = Img_Résolution.sprite;
+            }
+            else
+            {
+                Debug.Log("Réponse incorrecte !");
+                Reponse.SetActive(false);
+                PopUp.SetActive(true);
+                txt_Contexte.text = "Je ne suis pas sur que ça m'aide dans cette situation..";
+            }
         }
     }
 }

@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject PanelFin;
 
+    public TuToPuzzle tutorielPuzzle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,13 @@ public class GameManager : MonoBehaviour
 
    public void CheckPuzzle()
    {
-        if(NbrPuzzleRéussi == puzzles.Length)
+        if (SceneManager.GetActiveScene().name == "TutoPuzzle")
+        {
+            Debug.Log("tuto case +1");
+            tutorielPuzzle.EtapeSuivante();
+        }
+
+        if(NbrPuzzleRéussi == puzzles.Length && SceneManager.GetActiveScene().name != "TutoPuzzle")
         {
             PanelFin.SetActive(true);
             Debug.Log("tout est réussi");

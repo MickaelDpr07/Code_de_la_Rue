@@ -123,6 +123,7 @@ public class Deplacement : MonoBehaviour
                             place.SetActive(false); // Cache les emplacements après le drag
                         }
                         GameManager.NbrPuzzleRéussi++;
+                        GameManager.CheckPuzzle();
                         CanDrag = false;
                         Contexte.SetActive(false);
                         completed = true;
