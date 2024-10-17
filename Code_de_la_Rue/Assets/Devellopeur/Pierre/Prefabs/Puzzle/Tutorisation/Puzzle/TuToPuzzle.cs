@@ -15,7 +15,7 @@ public class TuToPuzzle : MonoBehaviour
     [SerializeField]
     public Button Btn_suivant;
     public TextMeshProUGUI TextExplicatif;
-    public int EtapeTuto = 0;
+    private int EtapeTuto = 0;
 
     [SerializeField]
     [Header("Enigme 1")]
