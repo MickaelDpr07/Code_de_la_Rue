@@ -340,6 +340,8 @@ public class QuizManager : MonoBehaviour
         questionText.text = "Fin du quiz !";
         finQuizPanel.SetActive(true);
         scoreText.text = scoreTextFormat + " " + totalScore + " / " + quizQuestions.Count;
+        ScoreQuizzManager.SetScoreSerieQuizz(fichierText.text, totalScore, quizQuestions.Count);
+        Debug.Log(ScoreQuizzManager.GetScoreSerieQuizz(fichierText.text));
         quitterButton.gameObject.SetActive(true);
 
         foreach (Button bouton in boutonsReponse)

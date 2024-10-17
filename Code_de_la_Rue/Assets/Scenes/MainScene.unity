@@ -122,6 +122,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &80598765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 80598767}
+  - component: {fileID: 80598766}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &80598766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80598765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c598334352f10443b1bbbecd9aa52d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &80598767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80598765}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -54.666718, y: 2014.6667, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &228463077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -544,6 +588,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontColor32.rgba
       value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455356836792344443, guid: b4e764cf368b8a645998d02e0259470e,
+        type: 3}
+      propertyPath: m_Name
+      value: Btn_Puzzle2
       objectReference: {fileID: 0}
     - target: {fileID: 1507737527872264971, guid: b4e764cf368b8a645998d02e0259470e,
         type: 3}
@@ -1189,6 +1238,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
       value: C1P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3874444881567205064, guid: b4e764cf368b8a645998d02e0259470e,
+        type: 3}
+      propertyPath: csvURL
+      value: https://docs.google.com/spreadsheets/d/e/2PACX-1vTbxC6_m7Tx7Pn37Ta0u9suHSqg0-0BqSyGUKCyrXuJmYQd125QvBZXSkFl_y781f8kqt8QLoZRXgmg/pub?gid=0&single=true&output=csv
       objectReference: {fileID: 0}
     - target: {fileID: 3908191569807939208, guid: b4e764cf368b8a645998d02e0259470e,
         type: 3}
@@ -2076,6 +2130,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MenuPrincipal, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6379959602715703656, guid: b4e764cf368b8a645998d02e0259470e,
+        type: 3}
+      propertyPath: m_Name
+      value: Btn_Quiz2
       objectReference: {fileID: 0}
     - target: {fileID: 6409123721121170980, guid: b4e764cf368b8a645998d02e0259470e,
         type: 3}
@@ -3107,6 +3166,7 @@ PrefabInstance:
     - {fileID: 986558191760968075, guid: b4e764cf368b8a645998d02e0259470e, type: 3}
     - {fileID: 8239420701379663, guid: b4e764cf368b8a645998d02e0259470e, type: 3}
     - {fileID: 2690949919556724795, guid: b4e764cf368b8a645998d02e0259470e, type: 3}
+    - {fileID: 8797266256986819858, guid: b4e764cf368b8a645998d02e0259470e, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8620339808730396906, guid: b4e764cf368b8a645998d02e0259470e,
         type: 3}
@@ -5119,3 +5179,4 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 426739465}
   - {fileID: 395042377}
+  - {fileID: 80598767}
