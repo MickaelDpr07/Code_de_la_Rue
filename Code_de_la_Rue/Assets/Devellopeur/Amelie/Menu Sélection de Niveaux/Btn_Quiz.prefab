@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 1906334163074071376}
   - component: {fileID: 2755515689179048482}
   - component: {fileID: 4397044417070345810}
+  - component: {fileID: 6850369803030131743}
   m_Layer: 5
   m_Name: Btn_Quiz
   m_TagString: Untagged
@@ -490,6 +491,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6850369803030131743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3629768713403534271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcecc269d083f35459f7f01dbe8be629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serieText: {fileID: 862612789662465809}
+  csvURL: https://docs.google.com/spreadsheets/d/e/2PACX-1vRXC1FAz67tRln10Pt24N0QEp2_t6uQM1lSLgMuEqZ5peXsrMayXg4JpKKdwyCMvd4QU__sm7EkIQBf/pub?gid=0&single=true&output=csv
 --- !u!1 &3710694698802469525
 GameObject:
   m_ObjectHideFlags: 0
