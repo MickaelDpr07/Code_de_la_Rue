@@ -44,6 +44,14 @@ public class QuizManager : MonoBehaviour
 
     public int taillePoliceInitiale = 40; // Taille de police initiale à stocker
 
+    // Ajout de nouvelles variables pour la personnalisation du bouton "SUITE"
+    public Vector3 suiteButtonScale = new Vector3(1.2f, 1.2f, 1.2f); // Scale quand c'est "SUITE"
+    public Color suiteButtonColor = Color.yellow; // Couleur quand c'est "SUITE"
+
+    // Variables pour stocker l'apparence initiale du bouton "Valider"
+    private Color couleurInitialeBouton;
+    private Vector3 scaleInitialBouton;
+
     [System.Serializable]
     public class QuizQuestion
     {
@@ -57,6 +65,10 @@ public class QuizManager : MonoBehaviour
     {
         StartCoroutine(TelechargementDataQuiz());
 
+        // Stockage de l'apparence initiale du bouton "Valider"
+        couleurInitialeBouton = validerButton.GetComponent<Image>().color;
+        scaleInitialBouton = validerButton.transform.localScale;
+
         validerButton.interactable = false;
         validerButton.onClick.AddListener(OnValiderButtonClicked);
 
@@ -65,6 +77,7 @@ public class QuizManager : MonoBehaviour
         quitterButton.gameObject.SetActive(false);
         quitterButton.onClick.AddListener(QuitterQuiz);
     }
+
     public void QuitterQuiz()
     {
         SceneManager.LoadScene("MainScene");
@@ -156,6 +169,7 @@ public class QuizManager : MonoBehaviour
                 int indexBouton = i;
                 boutonsReponse[i].onClick.AddListener(() => OnAnswerButtonClicked(indexBouton));
                 ResetButtonAppearance(i);
+                boutonsReponse[i].interactable = true; // Réactiver les boutons réponses
             }
             else
             {
@@ -224,7 +238,7 @@ public class QuizManager : MonoBehaviour
         {
             indexQuestionActu++;
             LoadQuestion();
-            validerButton.GetComponentInChildren<Text>().text = "Valider";
+            ResetValiderButtonAppearance();  // On restaure l'apparence initiale ici
         }
     }
 
@@ -252,8 +266,25 @@ public class QuizManager : MonoBehaviour
         else
         {
             ColorerBoutonsSelectionnes();
-            validerButton.GetComponentInChildren<Text>().text = "SUITE";
+            ModifierBoutonPourSuite(); // On modifie l'apparence ici quand c'est "SUITE"
             questionValidee = true;
+        }
+
+        DisableButtonsWithoutFilter();
+    }
+
+    void DisableButtonsWithoutFilter()
+    {
+        foreach (Button bouton in boutonsReponse)
+        {
+            // Sauvegarde des couleurs actuelles
+            ColorBlock colorBlock = bouton.colors;
+
+            // Appliquer les couleurs actuelles comme couleur de l'état désactivé
+            colorBlock.disabledColor = bouton.colors.normalColor; // Garde la couleur normale quand désactivé
+
+            bouton.colors = colorBlock;
+            bouton.interactable = false; // Désactive les interactions
         }
     }
 
@@ -264,28 +295,58 @@ public class QuizManager : MonoBehaviour
 
         ColorerBoutonsSelectionnes();
 
-        validerButton.GetComponentInChildren<Text>().text = "SUITE";
+        ModifierBoutonPourSuite(); // Change l'apparence du bouton pour "SUITE"
         questionValidee = true;
 
         yield return null;
+    }
+
+    void ModifierBoutonPourSuite()
+    {
+        validerButton.GetComponentInChildren<Text>().text = "SUITE";
+        validerButton.GetComponent<Image>().color = suiteButtonColor; // Change la couleur
+        validerButton.transform.localScale = suiteButtonScale; // Change la taille (scale)
+        validerButton.interactable = true; // Le bouton "SUITE" doit rester interactif
+    }
+
+    void ResetValiderButtonAppearance()
+    {
+        validerButton.GetComponentInChildren<Text>().text = "Valider";
+        validerButton.GetComponent<Image>().color = couleurInitialeBouton; // Restaure la couleur
+        validerButton.transform.localScale = scaleInitialBouton; // Restaure la taille (scale)
+        validerButton.interactable = false; // Désactiver le bouton jusqu'à ce que le joueur fasse un choix
     }
 
     void ColorerBoutonsSelectionnes()
     {
         for (int i = 0; i < boutonsReponse.Length; i++)
         {
-            if (i < questionActuel.reponses.Length && selectionJoueur[i])
+            if (selectionJoueur[i])
             {
-                Color targetColor = questionActuel.reponseCorrectQuestion.Contains(i) ? couleurBonneReponse : couleurMauvaiseReponse;
-                boutonsReponse[i].GetComponent<Image>().color = targetColor;
+                if (questionActuel.reponseCorrectQuestion.Contains(i))
+                {
+                    boutonsReponse[i].GetComponent<Image>().color = couleurBonneReponse;
+                }
+                else
+                {
+                    boutonsReponse[i].GetComponent<Image>().color = couleurMauvaiseReponse;
+                }
             }
         }
     }
 
     void EndQuiz()
     {
+        questionText.text = "Fin du quiz !";
         finQuizPanel.SetActive(true);
+        scoreText.text = scoreTextFormat + " " + totalScore + " / " + quizQuestions.Count;
         quitterButton.gameObject.SetActive(true);
-        scoreText.text = scoreTextFormat + " " + totalScore + "/" + quizQuestions.Count;
+
+        foreach (Button bouton in boutonsReponse)
+        {
+            bouton.gameObject.SetActive(false);
+        }
+
+        validerButton.gameObject.SetActive(false);
     }
 }

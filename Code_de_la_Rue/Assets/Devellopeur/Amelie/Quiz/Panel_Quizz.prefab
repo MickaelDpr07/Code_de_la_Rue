@@ -532,6 +532,8 @@ MonoBehaviour:
   largeurContour: 5
   scoreTextFormat: 'Votre score final est :'
   tailleSelection: 3
+  scaleBoutonSuite: {x: 1.2, y: 1.2, z: 1}
+  couleurBoutonSuite: {r: 0, g: 0.36235392, b: 0.4113207, a: 1}
   totalScore: 0
   taillePoliceInitiale: 40
 --- !u!1 &5989386617922761572

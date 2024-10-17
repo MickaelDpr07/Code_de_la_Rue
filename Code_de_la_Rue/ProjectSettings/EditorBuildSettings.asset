@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/Casse-t\xEAte/Quizz/C1Q1/C1Q1.unity"
     guid: f69be6f89edabbd4197203f1131683d2
+  - enabled: 1
+    path: Assets/Devellopeur/Pierre/Prefabs/Puzzle/Tutorisation/TutoPuzzle.unity
+    guid: d5fe85d0701617a48b87a75becad572f
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 1c31177fe349f3b44b78ba227027416b,
       type: 2}
