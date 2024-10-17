@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VectorGraphics;
+using UnityEngine.SceneManagement;
 
 public class Elemententrop : MonoBehaviour
 {
@@ -44,9 +45,14 @@ public class Elemententrop : MonoBehaviour
         Debug.Log("oui");
         if (PopUp != null)
         {
+           
            bool isActive = PopUp.activeSelf;
-           PopUp.SetActive(!isActive);
 
+            if(SceneManager.GetActiveScene().name != "TutoPuzzle")
+            {
+                PopUp.SetActive(!isActive);
+            }
+           
             Transform txtContexteTransform = PopUp.transform.Find("Txt_contexte");
 
             if (txtContexteTransform != null)
