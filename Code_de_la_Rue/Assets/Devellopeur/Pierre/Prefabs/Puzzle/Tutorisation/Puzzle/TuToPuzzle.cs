@@ -30,19 +30,19 @@ public class TuToPuzzle : MonoBehaviour
     [SerializeField]
     [Header("Enigme 3")]
     public GameObject ElementManquant;
-    public GameObject ChoixRéponses;
+    public GameObject ChoixRÃ©ponses;
 
     // Start is called before the first frame update
     void Start()
     {
-        CheckEtape(); // Vérifier l'étape initiale
+        CheckEtape(); // Vï¿½rifier l'ï¿½tape initiale
     }
 
     public void EtapeSuivante()
     {
        
             EtapeTuto++;
-            CheckEtape(); // Mettre à jour l'étape
+            CheckEtape(); // Mettre Ã  jour l'ï¿½tape
       
     }
 
@@ -51,30 +51,30 @@ public class TuToPuzzle : MonoBehaviour
         switch (EtapeTuto)
         {
             case 0:
-                // Actions pour l'étape 0
-                TextExplicatif.text = "Dans les puzzles, vous devrez résoudre diérentes situations problématiques que je vais essayer de vous expliquer.";
+                // Actions pour l'ï¿½tape 0
+                TextExplicatif.text = "Dans les puzzles, vous devrez rÃ©soudre diffÃ©rentes situations problÃ©matiques que je vais essayer de vous expliquer.";
                 Btn_suivant.interactable = true;
                 ContextePopUp.SetActive(false);
                 break;
 
             case 1:
-                // Actions pour l'étape 1
-                TextExplicatif.text = "Dans cette situation, votre but va être de remettre l’élément au bon endroit en le déplaçant avec votre doigt.";
+                // Actions pour l'ï¿½tape 1
+                TextExplicatif.text = "Dans cette situation, votre but va Ãªtre de remettre l'Ã©lÃ©ment au bon endroit en le dÃ©plaÃ§ant avec votre doigt.";
                 Btn_suivant.interactable = false;
                 DragandDrop.SetActive(true);
                 ElementsEnigme1.SetActive(true);
                 break;
 
             case 2:
-                // Résolution de l'étape 2
-                TextExplicatif.text = "Voilà qui est bien mieux ce piétion ne risquera pas de se faire écraser.";
+                // Rï¿½solution de l'ï¿½tape 2
+                TextExplicatif.text = "VoilÃ  qui est bien mieux ! Ce piÃ©tion ne risquera pas de se faire Ã©craser.";
                 Btn_suivant.interactable = true;
                 ElementsEnigme1.SetActive(false);
                 break;
 
             case 3:
-                // Actions pour l'étape 3
-                TextExplicatif.text = "Ici, votre objectif est de séléctionner l’élément qui semble faire tâche ou qui pourrait être en danger.";
+                // Actions pour l'ï¿½tape 3
+                TextExplicatif.text = "Ici, votre objectif est de sÃ©lectionner l'Ã©lÃ©ment qui semble faire tÃ¢che ou qui pourrait Ãªtre en danger.";
                 Btn_suivant.interactable = false;
                 DragandDrop.SetActive(false);
                 ElementEnTrop.SetActive(true);
@@ -82,38 +82,38 @@ public class TuToPuzzle : MonoBehaviour
                 break;
 
             case 4:
-                // Résolution de l'étape 3
-                TextExplicatif.text = "Au moins, personne n’est en danger !";
+                // Rï¿½solution de l'ï¿½tape 3
+                TextExplicatif.text = "Au moins, plus personne n'est en danger !";
                 Btn_suivant.interactable = true;
                 ContextePopUp.SetActive(false);
                 break;
 
             case 5:
-                //  Actions pour l'étape 4
-                TextExplicatif.text = "Et pour finir, ici vous devrez retrouver quel élément semble manquer à cet emplacement.";
+                //  Actions pour l'ï¿½tape 4
+                TextExplicatif.text = "Et pour finir, ici vous devrez retrouver quel Ã©lÃ©ment semble manquer Ã  cet emplacement.";
                 Btn_suivant.interactable = false;
                 ElementEnTrop.SetActive(false);
                 ElementManquant.SetActive(true);
-                //ChoixRéponses.SetActive(true);
+                //ChoixRï¿½ponses.SetActive(true);
                 break;
 
             case 6:
-                //  Résolution de l'étape 4
-                TextExplicatif.text = "Je me disais bien qu’il manquait quelque chose ici.";
+                //  Rï¿½solution de l'ï¿½tape 4
+                TextExplicatif.text = "Je me disais bien qu'il manquait quelque chose ici.";
                 Btn_suivant.interactable = true;
                 //ElementManquant.SetActive(false);
-                ChoixRéponses.SetActive(false);
+                ChoixRÃ©ponses.SetActive(false);
                 break;
 
             case 7:
-                //  Résolution de l'étape 5
-                TextExplicatif.text = "Les situations peuvent être vastes pour vous déplacer il vous suffit de placer deux doigts sur l’écran pour dézoomer et d’un seul pour déplacer la scène.";
+                //  Rï¿½solution de l'ï¿½tape 5
+                TextExplicatif.text = "Les situations peuvent Ãªtre vastes. Pour vous dÃ©placer, il vous suffit de placer deux doigts sur l'Ã©cran pour zoomer et d'un seul pour dÃ©placer la scÃ¨ne.";
                 Btn_suivant.interactable = true;
 
                 break;
 
             default:
-                // Actions pour les étapes supplémentaires (non définies)
+                // Actions pour les ï¿½tapes supplï¿½mentaires (non dï¿½finies)
                 SceneManager.LoadScene("C1P1");
                 break;
         }
