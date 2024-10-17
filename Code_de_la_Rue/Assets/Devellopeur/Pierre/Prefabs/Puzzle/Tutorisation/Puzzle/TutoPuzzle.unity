@@ -546,7 +546,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1231120426}
         m_TargetAssemblyTypeName: TuToPuzzle, Assembly-CSharp
-        m_MethodName: EtapeSuivante
+        m_MethodName: SkipTuto
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1888,7 +1888,6 @@ MonoBehaviour:
   GameManager: {fileID: 1858690867}
   Btn_suivant: {fileID: 522225421}
   TextExplicatif: {fileID: 730893938}
-  EtapeTuto: 0
   DragandDrop: {fileID: 2749111319141831496}
   ElementsEnigme1: {fileID: 1168475099}
   ElementEnTrop: {fileID: 3712353172880718444}
@@ -3197,6 +3196,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: -480
       objectReference: {fileID: 0}
+    - target: {fileID: 8470638434944400248, guid: c9f6b1485204d6d419165cdaa4e07049,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5676342855026552073}
+    - target: {fileID: 8470638434944400248, guid: c9f6b1485204d6d419165cdaa4e07049,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8900636429997628145, guid: c9f6b1485204d6d419165cdaa4e07049,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -3959,7 +3968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2735443215483073163
 RectTransform:
   m_ObjectHideFlags: 0

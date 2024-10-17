@@ -118,4 +118,9 @@ public class TuToPuzzle : MonoBehaviour
                 break;
         }
     }
+    public void SkipTuto()
+    {
+        EtapeTuto = 8;
+        CheckEtape();
+    }
 }
