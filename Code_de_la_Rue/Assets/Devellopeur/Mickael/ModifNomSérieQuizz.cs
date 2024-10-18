@@ -1,40 +1,39 @@
+using System.Threading.Tasks;
+using System.Net;
 using UnityEngine;
 using TMPro;
-using System.Collections;
 using System.IO;
-using System.Net;
 
 public class ModifNomSérieQuizz : MonoBehaviour
 {
     public TextMeshProUGUI TXTNomSerie;
     public TextMeshProUGUI TXTScore;
+    public TextMeshProUGUI TXTNouveau; // Si tu as un texte "Nouveau" à afficher
     public string csvURL;
 
-    public TextMeshProUGUI TXTNouveau;
-
-    void Start()
+    async void Start()
     {
-        StartCoroutine(TelechargerEtLireCSV());
+        await TelechargerEtLireCSV();
     }
 
-    IEnumerator TelechargerEtLireCSV()
+    async Task TelechargerEtLireCSV()
     {
         using (WebClient client = new WebClient())
         {
-            string csvData = client.DownloadString(csvURL);
+            string csvData = await client.DownloadStringTaskAsync(csvURL);
             string nomSérie = ExtraireNomSérie(csvData);
 
             TXTNomSerie.text = nomSérie;
 
-            // Maj affichage du score
-            TXTScore.text = ScoreQuizzManager.GetScoreSerieQuizzString(nomSérie);
+            // Mettre à jour l'affichage du score
+            string scoreText = ScoreQuizzManager.GetScoreSerieQuizzString(nomSérie);
+            TXTScore.text = scoreText;
 
-            if (ScoreQuizzManager.GetScoreSerieQuizzString(nomSérie) == "Quizz pas encore réalisé")
+            // Afficher un message si le quizz n'a pas encore été réalisé
+            if (scoreText == "Quizz pas encore réalisé")
             {
                 TXTNouveau.gameObject.SetActive(true);
             }
-
-            yield return null;
         }
     }
 
