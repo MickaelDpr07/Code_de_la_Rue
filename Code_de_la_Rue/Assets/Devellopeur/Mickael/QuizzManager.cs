@@ -311,7 +311,7 @@ public class QuizManager : MonoBehaviour
 
     void ResetValiderButtonAppearance()
     {
-        validerButton.GetComponentInChildren<Text>().text = "Valider";
+        validerButton.GetComponentInChildren<Text>().text = "VALIDER";
         validerButton.GetComponent<Image>().color = couleurInitialeBouton; // Restaure la couleur
         validerButton.transform.localScale = scaleInitialBouton; // Restaure la taille (scale)
         validerButton.interactable = false; // Désactiver le bouton jusqu'à ce que le joueur fasse un choix
