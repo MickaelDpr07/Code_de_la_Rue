@@ -30,7 +30,8 @@ public class TuToPuzzle : MonoBehaviour
     [SerializeField]
     [Header("Enigme 3")]
     public GameObject ElementManquant;
-    public GameObject ChoixRéponses;
+    public GameObject ContextePopUp2;
+
 
     // Start is called before the first frame update
     void Start()
@@ -101,8 +102,7 @@ public class TuToPuzzle : MonoBehaviour
                 //  R�solution de l'�tape 4
                 TextExplicatif.text = "Je me disais bien qu'il manquait quelque chose ici.";
                 Btn_suivant.interactable = true;
-                //ElementManquant.SetActive(false);
-                ChoixRéponses.SetActive(false);
+                ContextePopUp2.SetActive(false);
                 break;
 
             case 7:

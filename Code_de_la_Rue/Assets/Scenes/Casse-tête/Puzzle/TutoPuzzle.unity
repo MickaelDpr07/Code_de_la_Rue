@@ -2019,7 +2019,7 @@ MonoBehaviour:
   ElementEnTrop: {fileID: 3712353172880718444}
   ContextePopUp: {fileID: 1492871816}
   ElementManquant: {fileID: 2691377764274335654}
-  "ChoixR\xE9ponses": {fileID: 0}
+  ContextePopUp2: {fileID: 5238071364800200590}
 --- !u!1001 &1430533201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3819,7 +3819,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &3426074071255520903
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4358,6 +4358,7 @@ MonoBehaviour:
   - {fileID: 1925078475}
   - {fileID: 1887763397}
   BouttonContexte: {fileID: 2072239402}
+  BTNValider: {fileID: 0}
   completed: 0
   GameManager: {fileID: 1858690867}
 --- !u!61 &5970351689616159215

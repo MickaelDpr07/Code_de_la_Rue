@@ -104,12 +104,11 @@ public class Deplacement : MonoBehaviour
         }
     }
 
-    // Méthode pour détecter les collisions avec les emplacements
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Collision detected with: " + other.gameObject.name); // Pour vérifier si la collision est détectée
 
-        if (isDragging)
+        if (isDragging) // Assurez-vous que le drag est en cours
         {
             foreach (GameObject emplacement in EmplacementDisponilbes)
             {
@@ -129,17 +128,48 @@ public class Deplacement : MonoBehaviour
                         completed = true;
                         isDragging = false;
                         InputManager.isDraggingObject = false;
-                        OpenPopUp();
-                    }
-                    else
-                    {
-                        Debug.Log("Incorrect placement");
-                        OpenPopUp();
+                        // Ouvrir le popup ici si nécessaire
+                        //OpenPopUp(); // Ouvrir le popup pour indiquer un placement correct
+                        if (PopUp.activeSelf) // Si le popup est maintenant actif
+                        {
+                            // Cherche l'enfant avec le nom "Txt_contexte"
+                            Transform txtContexteTransform = PopUp.transform.Find("Txt_contexte");
+
+                            // Vérifie si l'élément existe et applique le texte
+                            if (txtContexteTransform != null)
+                            {
+                                // Récupérer le composant TMP_Text et appliquer le texte
+                                TMP_Text txtContexte = txtContexteTransform.GetComponent<TMP_Text>();
+                                txt_Contexte = txtContexte;
+
+                                if (txtContexte != null)
+                                {
+                                    if (!completed)
+                                    {
+                                        txtContexte.text = texte1; // Assigner texte1 au TextMeshPro
+                                    }
+                                    else
+                                    {
+                                        txtContexte.text = texte2; // Assigner texte1 au TextMeshPro
+                                    }
+                                }
+                                else
+                                {
+                                    Debug.Log("Incorrect placement");
+                                    // Ouvrir le popup ici si nécessaire
+                                    //OpenPopUp(); // Ouvrir le popup pour indiquer un placement incorrect
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
+            
+        
+    
+
 
     public void ClosePopUp()
     {

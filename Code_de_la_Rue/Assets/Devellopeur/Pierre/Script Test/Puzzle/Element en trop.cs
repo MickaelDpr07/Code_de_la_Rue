@@ -22,6 +22,7 @@ public class Elemententrop : MonoBehaviour
     private Toggle selectedToggle;
 
     public Button BouttonContexte;
+    public GameObject BTNValider;
 
     public bool completed;
 
@@ -172,7 +173,10 @@ public class Elemententrop : MonoBehaviour
         if (reponseCorrecte)
         {
             txt_Contexte.text = texte2;
-            PopUp.SetActive(false);
+            if(BTNValider !=null)
+            {
+                BTNValider.SetActive(false);
+            }
             GameManager.NbrPuzzleRéussi++;
             GameManager.CheckPuzzle();
             //On detruit les elements en trop

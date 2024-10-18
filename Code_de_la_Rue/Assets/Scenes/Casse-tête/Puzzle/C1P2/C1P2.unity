@@ -2333,6 +2333,11 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1306295919679227238, guid: 359684436f9fb3f428fc0be9e1cbf092,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1587929175492760342, guid: 359684436f9fb3f428fc0be9e1cbf092,
         type: 3}
       propertyPath: m_Pivot.y
@@ -2513,6 +2518,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5506697215860251595, guid: 359684436f9fb3f428fc0be9e1cbf092,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6080724222866290885, guid: 359684436f9fb3f428fc0be9e1cbf092,
         type: 3}

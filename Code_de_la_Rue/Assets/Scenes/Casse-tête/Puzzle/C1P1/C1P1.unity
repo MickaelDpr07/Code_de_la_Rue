@@ -2382,6 +2382,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 798696753308598359, guid: 5497ba3896e957943bde0b2c9896b337,
         type: 3}
+      propertyPath: BTNValider
+      value: 
+      objectReference: {fileID: 5506460092842888310}
+    - target: {fileID: 798696753308598359, guid: 5497ba3896e957943bde0b2c9896b337,
+        type: 3}
       propertyPath: GameManager
       value: 
       objectReference: {fileID: 1997492698}
@@ -2884,6 +2889,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Transition
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496667658688593265, guid: 5497ba3896e957943bde0b2c9896b337,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7507771111754374970, guid: 5497ba3896e957943bde0b2c9896b337,
         type: 3}
