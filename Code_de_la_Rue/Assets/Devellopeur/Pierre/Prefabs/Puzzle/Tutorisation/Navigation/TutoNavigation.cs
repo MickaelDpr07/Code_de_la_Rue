@@ -99,7 +99,7 @@ public class TutoNavigation : MonoBehaviour
             case 9:
                 //  Résolution de l'étape 9
                 AffichagePanelSuivant();
-
+                Btn_Continuer.SetActive(false);
                 break;
 
             default:

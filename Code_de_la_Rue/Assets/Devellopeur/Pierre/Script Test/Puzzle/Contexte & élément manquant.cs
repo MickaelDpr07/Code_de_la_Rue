@@ -125,12 +125,21 @@ public class Contexte : MonoBehaviour
                 completed = true;
                 img_afficher.sprite = Img_Résolution.sprite;
             }
+        }
+        else
+        {
+            Debug.Log("Réponse incorrecte !"); 
+            Reponse.SetActive(false);
+            PopUp.SetActive(true);
+
+            // Afficher un message d'erreur dans le texte contextuel
+            if (txt_Contexte != null)
+            {
+                txt_Contexte.text = "Je ne suis pas sûr que ça m'aide dans cette situation..";
+            }
             else
             {
-                Debug.Log("Réponse incorrecte !");
-                Reponse.SetActive(false);
-                PopUp.SetActive(true);
-                txt_Contexte.text = "Je ne suis pas sur que ça m'aide dans cette situation..";
+                Debug.LogError("Le texte contextuel est nul lors de la réponse incorrecte.");
             }
         }
     }
