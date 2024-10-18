@@ -10,6 +10,8 @@ public class ModifNomSérieQuizz : MonoBehaviour
     public TextMeshProUGUI TXTScore;
     public string csvURL;
 
+    public TextMeshProUGUI TXTNouveau;
+
     void Start()
     {
         StartCoroutine(TelechargerEtLireCSV());
@@ -27,7 +29,11 @@ public class ModifNomSérieQuizz : MonoBehaviour
             // Maj affichage du score
             TXTScore.text = ScoreQuizzManager.GetScoreSerieQuizzString(nomSérie);
 
-            Debug.Log(TXTScore.text);
+            if (ScoreQuizzManager.GetScoreSerieQuizzString(nomSérie) == "Quizz pas encore réalisé")
+            {
+                TXTNouveau.gameObject.SetActive(true);
+            }
+
             yield return null;
         }
     }

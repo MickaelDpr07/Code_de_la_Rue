@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
 
     public TuToPuzzle tutorielPuzzle;
 
+    // Pour la "sauvegarde" du score au puzzle
+    public string nomSerie;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,18 @@ public class GameManager : MonoBehaviour
 
         if(NbrPuzzleRéussi == puzzles.Length && SceneManager.GetActiveScene().name != "TutoPuzzle")
         {
+            if (SceneManager.GetActiveScene().name == "C1P1")
+            {
+                nomSerie = "2. Premiers Puzzles";
+                Debug.Log("C1P1");
+            }
+            else if (SceneManager.GetActiveScene().name == "C1P2")
+            {
+                nomSerie = "4. Autres Puzzles";
+                Debug.Log("C1P1");
+            }
+
+            ScoreQuizzManager.SetScorePuzzle(nomSerie, NbrPuzzleRéussi, puzzles.Length);
             PanelFin.SetActive(true);
             Debug.Log("tout est réussi");
         }

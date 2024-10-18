@@ -1169,6 +1169,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Btn_Quiz1
       objectReference: {fileID: 0}
+    - target: {fileID: 3639433098747838336, guid: b4e764cf368b8a645998d02e0259470e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3642015719193534117, guid: b4e764cf368b8a645998d02e0259470e,
         type: 3}
       propertyPath: m_HorizontalFit
@@ -2218,7 +2223,7 @@ PrefabInstance:
     - target: {fileID: 6425233435206067381, guid: b4e764cf368b8a645998d02e0259470e,
         type: 3}
       propertyPath: m_text
-      value: 3. Autres Puzzles
+      value: 4. Autres Puzzles
       objectReference: {fileID: 0}
     - target: {fileID: 6479584069035794088, guid: b4e764cf368b8a645998d02e0259470e,
         type: 3}
